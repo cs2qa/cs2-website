@@ -3,76 +3,131 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import { 
-  Wifi, 
-  Radio, 
-  Server, 
+  Code2, 
+  Database, 
+  Cloud, 
+  Brain,
+  Smartphone,
+  Shield,
+  GitBranch,
+  Server,
   Network,
-  Building2,
   Globe2,
   TrendingUp,
-  Award
+  Award,
+  CheckCircle,
+  ArrowRight,
+  Zap,
+  Layers,
+  Cpu,
+  Monitor,
+  Terminal,
+  Workflow,
+  Calendar
 } from 'lucide-react'
 
 const Expertise = () => {
-  const telecomExpertise = [
+  const technicalExpertise = [
     {
-      icon: <Wifi className="w-8 h-8" />,
-      title: "Network Architecture",
-      description: "Designed and optimized 5G/4G networks for major European carriers"
+      icon: <Brain className="w-8 h-8" />,
+      title: "AI & Machine Learning",
+      description: "Advanced neural networks, NLP, computer vision, and MLOps pipelines",
+      technologies: ["TensorFlow", "PyTorch", "Hugging Face", "OpenAI", "LangChain"]
     },
     {
-      icon: <Radio className="w-8 h-8" />,
-      title: "Spectrum Management",
-      description: "Strategic frequency allocation and interference optimization"
+      icon: <Cloud className="w-8 h-8" />,
+      title: "Cloud Architecture",
+      description: "Scalable microservices, containerization, and serverless computing",
+      technologies: ["AWS", "Google Cloud", "Docker", "Kubernetes", "Terraform"]
     },
     {
-      icon: <Server className="w-8 h-8" />,
-      title: "Core Systems",
-      description: "Implementation of carrier-grade billing and provisioning systems"
+      icon: <Code2 className="w-8 h-8" />,
+      title: "Full-Stack Development", 
+      description: "Modern web applications with responsive design and real-time features",
+      technologies: ["React", "Next.js", "Node.js", "TypeScript", "Python"]
     },
     {
-      icon: <Network className="w-8 h-8" />,
-      title: "IoT Solutions",
-      description: "Large-scale M2M deployments and edge computing strategies"
+      icon: <Database className="w-8 h-8" />,
+      title: "Data Engineering",
+      description: "Big data processing, data pipelines, and analytics infrastructure",
+      technologies: ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "Apache Kafka"]
+    },
+    {
+      icon: <Smartphone className="w-8 h-8" />,
+      title: "Mobile Development",
+      description: "Cross-platform mobile apps with native performance and user experience",
+      technologies: ["React Native", "Flutter", "iOS", "Android", "Progressive PWA"]
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: "Security & Compliance",
+      description: "Enterprise security, encryption, and regulatory compliance frameworks",
+      technologies: ["OAuth", "JWT", "HIPAA", "SOC 2", "Penetration Testing"]
     }
   ]
 
-  const clients = [
-    "European Tier-1 Carriers",
-    "Government Agencies",
-    "Infrastructure Providers",
-    "MVNO Operators",
-    "Enterprise Clients",
-    "Healthcare Systems"
+  const developmentPractices = [
+    {
+      icon: <GitBranch className="w-6 h-6" />,
+      title: "DevOps & CI/CD",
+      description: "Automated testing, deployment pipelines, and infrastructure as code"
+    },
+    {
+      icon: <Monitor className="w-6 h-6" />,
+      title: "Monitoring & Analytics",
+      description: "Real-time system monitoring, performance optimization, and user analytics"
+    },
+    {
+      icon: <Terminal className="w-6 h-6" />,
+      title: "API Architecture",
+      description: "RESTful APIs, GraphQL, and microservices with comprehensive documentation"
+    },
+    {
+      icon: <Workflow className="w-6 h-6" />,
+      title: "Agile Development",
+      description: "Scrum methodology, continuous integration, and iterative development cycles"
+    }
   ]
 
   const achievements = [
     {
       metric: "15+",
       label: "Years of Experience",
-      description: "In telecommunications and technology consulting"
+      description: "In software development and technology consulting"
     },
     {
-      metric: "50+",
-      label: "Major Projects",
-      description: "Successfully delivered across Europe and North America"
+      metric: "100+",
+      label: "Projects Delivered",
+      description: "Enterprise applications and AI solutions deployed globally"
     },
     {
-      metric: "€100M+",
-      label: "Cost Savings",
-      description: "Generated for clients through optimization strategies"
+      metric: "99.9%",
+      label: "Uptime Achieved",
+      description: "Average system reliability across production environments"
     },
     {
-      metric: "99.99%",
-      label: "Uptime",
-      description: "Average system reliability across deployed solutions"
+      metric: "24/7",
+      label: "Support Available",
+      description: "Continuous monitoring and maintenance services"
     }
   ]
 
+  const techStack = [
+    "Python", "JavaScript", "TypeScript", "React", "Next.js", "Node.js",
+    "TensorFlow", "PyTorch", "AWS", "Google Cloud", "Docker", "Kubernetes",
+    "PostgreSQL", "MongoDB", "Redis", "GraphQL", "REST APIs", "Microservices"
+  ]
+
   return (
-    <section className="py-20 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-primary/5 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full translate-y-32 -translate-x-32"></div>
+      
+      <div className="max-w-7xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,104 +135,133 @@ const Expertise = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Built on Telecom Excellence
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full text-primary font-medium mb-4 shadow-sm">
+            <Cpu className="w-4 h-4 mr-2" />
+            Technology Expertise
+          </div>
+          <h2 className="text-display-sm font-display text-gray-900 mb-6">
+            Built on Technical Excellence
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our deep telecommunications heritage provides the foundation for building 
-            robust, scalable AI solutions that meet enterprise standards.
+          <p className="text-body-lg text-gray-600 max-w-3xl mx-auto font-body">
+            Our comprehensive technology stack and development practices enable us to deliver 
+            enterprise-grade solutions that scale, perform, and innovate.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-bold mb-6 flex items-center">
-              <Building2 className="w-8 h-8 text-primary mr-3" />
-              Telecommunications Heritage
-            </h3>
-            <div className="space-y-4">
-              {telecomExpertise.map((item, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow">
-                  <CardContent className="p-4">
-                    <div className="flex items-start">
-                      <div className="text-primary mr-4">{item.icon}</div>
-                      <div>
-                        <h4 className="font-semibold mb-1">{item.title}</h4>
-                        <p className="text-gray-600 text-sm">{item.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-bold mb-6 flex items-center">
-              <TrendingUp className="w-8 h-8 text-primary mr-3" />
-              AI Transformation Journey
-            </h3>
-            <div className="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-400/60">
-              <div className="space-y-4">
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold mb-2">2008-2018: Telecom Consulting</h4>
-                  <p className="text-gray-600">
-                    Built reputation as trusted advisors to Europe&apos;s leading telecommunications 
-                    providers, delivering complex network and system integrations.
-                  </p>
+        {/* Core Technical Expertise */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {technicalExpertise.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="flex items-center mb-4">
+                <div className="p-3 bg-gradient-to-br from-primary to-primary/80 rounded-lg text-white mr-4">
+                  {item.icon}
                 </div>
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold mb-2">2019-2021: Strategic Pivot</h4>
-                  <p className="text-gray-600">
-                    Recognized AI&apos;s transformative potential and began developing proprietary 
-                    machine learning solutions for healthcare applications.
-                  </p>
-                </div>
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold mb-2">2022-Present: AI Leadership</h4>
-                  <p className="text-gray-600">
-                    Launched CS2 Health and B2B AI solutions, securing partnerships with leading 
-                    healthcare providers and validating our AI-first approach.
-                  </p>
-                </div>
+                <h3 className="text-heading-sm font-display text-gray-900">{item.title}</h3>
               </div>
-            </div>
-
-            <div className="mt-6 bg-primary/10 rounded-lg p-6">
-              <h4 className="font-semibold mb-3 flex items-center">
-                <Globe2 className="w-6 h-6 text-primary mr-2" />
-                Client Portfolio
-              </h4>
+              
+              <p className="text-body-md text-gray-600 mb-4 font-body">
+                {item.description}
+              </p>
+              
               <div className="flex flex-wrap gap-2">
-                {clients.map((client, index) => (
+                {item.technologies.map((tech, techIndex) => (
                   <span 
-                    key={index}
-                    className="bg-white px-3 py-1 rounded-full text-sm text-gray-700"
+                    key={techIndex}
+                    className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium"
                   >
-                    {client}
+                    {tech}
                   </span>
                 ))}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
 
+        {/* Development Practices */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 mb-16 shadow-lg"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-heading-lg font-display text-gray-900 mb-4">
+              Development Excellence
+            </h3>
+            <p className="text-body-md text-gray-600 font-body max-w-2xl mx-auto">
+              We follow industry best practices and modern development methodologies 
+              to ensure code quality, maintainability, and scalability.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {developmentPractices.map((practice, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="flex justify-center mb-3">
+                  <div className="p-3 bg-gradient-to-br from-blue-500/10 to-primary/10 rounded-lg text-primary">
+                    {practice.icon}
+                  </div>
+                </div>
+                <h4 className="text-heading-sm font-display text-gray-900 mb-2">
+                  {practice.title}
+                </h4>
+                <p className="text-body-sm text-gray-600 font-body">
+                  {practice.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Technology Stack */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h3 className="text-heading-lg font-display text-gray-900 mb-6">
+            Our Technology Stack
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {techStack.map((tech, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
+                viewport={{ once: true }}
+                className="bg-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 text-body-sm font-medium text-gray-700 border border-gray-200 hover:border-primary/30"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Achievements */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
           {achievements.map((achievement, index) => (
             <motion.div
@@ -186,33 +270,65 @@ const Expertise = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg p-6 text-center shadow-lg border-2 border-gray-400/60"
+              className="bg-white rounded-xl p-6 text-center shadow-lg"
             >
-              <div className="text-3xl font-bold text-primary mb-2">
+              <div className="text-display-sm font-display text-primary mb-2">
                 {achievement.metric}
               </div>
-              <div className="font-semibold mb-1">{achievement.label}</div>
-              <div className="text-sm text-gray-600">{achievement.description}</div>
+              <div className="text-body-md font-display font-semibold text-gray-900 mb-1">
+                {achievement.label}
+              </div>
+              <div className="text-body-sm text-gray-600 font-body">
+                {achievement.description}
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mt-16 bg-gradient-to-r from-primary to-primary/80 rounded-lg p-8 text-white text-center"
+          className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-2xl p-8 text-white text-center shadow-xl relative overflow-hidden"
         >
-          <Award className="w-12 h-12 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-4">
-            Enterprise-Grade Solutions with Startup Innovation
-          </h3>
-          <p className="max-w-2xl mx-auto">
-            We combine the reliability and scalability requirements learned from telecom 
-            infrastructure with the agility and innovation of modern AI development, 
-            delivering solutions that are both cutting-edge and production-ready.
-          </p>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
+          
+          <div className="relative">
+            <div className="flex justify-center mb-6">
+              <div className="p-4 bg-white/20 rounded-full">
+                <Zap className="w-8 h-8 text-white" />
+              </div>
+            </div>
+            
+            <h3 className="text-heading-lg font-display mb-4">
+              Ready to Build Something Amazing?
+            </h3>
+            <p className="text-body-lg text-white/90 max-w-2xl mx-auto mb-8 font-body">
+              Let's discuss how our technical expertise can help you achieve your goals. 
+              From concept to deployment, we're here to make your vision a reality.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button className="bg-white text-primary hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3">
+                  <CheckCircle className="mr-2 w-5 h-5" />
+                  Start Your Project
+                </Button>
+              </Link>
+              <Link href="/demo">
+                <Button 
+                  variant="outline" 
+                  className="border-white text-white hover:bg-white hover:text-primary px-6 py-3"
+                >
+                  <Calendar className="mr-2 w-5 h-5" />
+                  Schedule Demo
+                </Button>
+              </Link>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -25,11 +25,11 @@ export default function Navigation() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <Image
-                src="/logoCS2.png"
+                src="/logoCS2.svg"
                 alt="CS2 Technologies"
-                width={150}
-                height={50}
-                className="h-12 w-auto"
+                width={500}
+                height={500}
+                className="h-14 w-auto"
               />
             </Link>
           </div>
