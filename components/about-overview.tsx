@@ -142,7 +142,7 @@ const AboutOverview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-xl shadow-lg border-2 border-gray-400/60"
+              className="bg-white p-8 rounded-xl shadow-lg"
             >
               <h3 className="text-heading-md font-display text-gray-900 mb-6">
                 Why Choose CS2 Technologies?
