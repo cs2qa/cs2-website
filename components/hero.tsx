@@ -51,7 +51,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-lg shadow-xl transition-shadow border-2 border-gray-400/60"
+              className="bg-white p-6 rounded-lg shadow-xl transition-shadow"
             >
               <Cloud className="w-12 h-12 text-primary mb-4 mx-auto" />
               <h3 className="text-heading-sm font-display mb-2">Cloud-Native Solutions</h3>
@@ -62,7 +62,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-lg shadow-xl transition-shadow border-2 border-gray-400/60"
+              className="bg-white p-6 rounded-lg shadow-xl transition-shadow"
             >
               <Brain className="w-12 h-12 text-primary mb-4 mx-auto" />
               <h3 className="text-heading-sm font-display mb-2">AI-Powered Innovation</h3>
@@ -73,7 +73,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-lg shadow-xl transition-shadow border-2 border-gray-400/60"
+              className="bg-white p-6 rounded-lg shadow-xl transition-shadow"
             >
               <Sparkles className="w-12 h-12 text-primary mb-4 mx-auto" />
               <h3 className="text-heading-sm font-display mb-2">Healthcare Excellence</h3>

@@ -156,7 +156,7 @@ const LocationsSection = () => {
         </div>
 
         {/* Contact Methods */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-400/60">
+        <div className="bg-white rounded-2xl p-8 shadow-lg">
           <div className="text-center mb-8">
             <h3 className="text-heading-lg font-display text-gray-900 mb-4">
               Ready to Get Started?
