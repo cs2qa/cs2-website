@@ -1,5 +1,10 @@
 import Navigation from '@/components/navigation'
 import Hero from '@/components/hero'
+import ServicesSection from '@/components/services-section'
+import AboutOverview from '@/components/about-overview'
+import TestimonialsSection from '@/components/testimonials-section'
+import LocationsSection from '@/components/locations-section'
+import CTASection from '@/components/cta-section'
 import Footer from '@/components/footer'
 
 export default function Home() {
@@ -7,6 +12,11 @@ export default function Home() {
     <main className="min-h-screen">
       <Navigation />
       <Hero />
+      <ServicesSection />
+      <AboutOverview />
+      <TestimonialsSection />
+      <LocationsSection />
+      <CTASection />
       <Footer />
     </main>
   )

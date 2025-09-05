@@ -38,3 +38,4 @@ next-env.d.ts
 # AWS
 .cloudfront-distribution-id
 aws-config-prod.json
+/.idea/

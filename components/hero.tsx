@@ -15,18 +15,18 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex justify-center items-center mb-4 space-x-2">
+          <div className="flex justify-center items-center mb-6 space-x-2">
             <Brain className="w-6 h-6 text-primary" />
-            <span className="text-sm font-medium text-gray-600">Leading Innovation in AI</span>
+            <span className="text-body-sm font-medium text-gray-600 tracking-wide uppercase">Leading Innovation in AI</span>
             <Sparkles className="w-6 h-6 text-primary" />
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+          <h1 className="text-display-lg md:text-display-lg font-display text-gray-900 mb-6 leading-none">
             Transforming Business with
             <span className="text-gradient block mt-2">Intelligent Solutions</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-body-lg md:text-body-lg text-gray-600 mb-8 max-w-3xl mx-auto font-body leading-relaxed">
             From telecommunications expertise to cutting-edge AI innovation. 
             CS2 Technologies delivers transformative healthcare and business solutions 
             powered by advanced artificial intelligence.
@@ -54,8 +54,8 @@ const Hero = () => {
               className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             >
               <Cloud className="w-12 h-12 text-primary mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold mb-2">Cloud-Native Solutions</h3>
-              <p className="text-gray-600">Scalable AWS & Google Cloud deployments</p>
+              <h3 className="text-heading-sm font-display mb-2">Cloud-Native Solutions</h3>
+              <p className="text-body-md text-gray-600 font-body">Scalable AWS & Google Cloud deployments</p>
             </motion.div>
             
             <motion.div
@@ -65,8 +65,8 @@ const Hero = () => {
               className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             >
               <Brain className="w-12 h-12 text-primary mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold mb-2">AI-Powered Innovation</h3>
-              <p className="text-gray-600">RAG, LLMs, and Knowledge Graphs</p>
+              <h3 className="text-heading-sm font-display mb-2">AI-Powered Innovation</h3>
+              <p className="text-body-md text-gray-600 font-body">RAG, LLMs, and Knowledge Graphs</p>
             </motion.div>
             
             <motion.div
@@ -76,8 +76,8 @@ const Hero = () => {
               className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             >
               <Sparkles className="w-12 h-12 text-primary mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold mb-2">Healthcare Excellence</h3>
-              <p className="text-gray-600">Transforming clinical workflows with AI</p>
+              <h3 className="text-heading-sm font-display mb-2">Healthcare Excellence</h3>
+              <p className="text-body-md text-gray-600 font-body">Transforming clinical workflows with AI</p>
             </motion.div>
           </div>
         </motion.div>
