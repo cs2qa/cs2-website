@@ -69,6 +69,7 @@ const config: Config = {
         'fade-down': 'fadeDown 0.5s ease-in-out',
         'slide-in': 'slideIn 0.5s ease-in-out',
         'bounce-gentle': 'bounceGentle 1s ease-in-out',
+        'slide-infinite': 'slideInfinite 3s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -90,6 +91,10 @@ const config: Config = {
         bounceGentle: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-5px)' },
+        },
+        slideInfinite: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },
