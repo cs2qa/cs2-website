@@ -86,21 +86,21 @@ const About = () => {
           >
             <h3 className="text-3xl font-bold text-gray-900">Our Philosophy</h3>
             <div className="space-y-4">
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg border-2 border-gray-400/60">
                 <h4 className="font-semibold text-lg mb-2 text-primary">Transparency First</h4>
                 <p className="text-gray-600">
                   We believe in open-source solutions that provide complete visibility 
                   into how AI decisions are made, ensuring trust and accountability.
                 </p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg border-2 border-gray-400/60">
                 <h4 className="font-semibold text-lg mb-2 text-primary">Adaptability at Core</h4>
                 <p className="text-gray-600">
                   Every organization is unique. Our solutions are designed to adapt to 
                   specific workflows and requirements, not the other way around.
                 </p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-lg border-2 border-gray-400/60">
                 <h4 className="font-semibold text-lg mb-2 text-primary">Scalability by Design</h4>
                 <p className="text-gray-600">
                   From single clinics to enterprise health systems, our cloud-native 
@@ -119,7 +119,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="text-center bg-white rounded-xl p-6 border-2 border-gray-400/60"
             >
               <div className="text-primary mb-4 flex justify-center">
                 {milestone.icon}

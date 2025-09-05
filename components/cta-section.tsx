@@ -102,8 +102,8 @@ const CTASection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-            className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
-          >
+          className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-gray-400/60"
+        >
             <h3 className="text-heading-md font-display text-white mb-6">
               Start Your Project Today
             </h3>

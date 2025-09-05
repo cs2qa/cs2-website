@@ -20,7 +20,7 @@ const LocationsSection = () => {
       address: "2424 Finch Ave W, Unit 14",
       city: "Toronto, ON M9M 2E2",
       country: "Canada",
-      phone: "+1 (416) 555-0123",
+      phone: "+1 905 749 5338",
       email: "toronto@cs2technologies.ca",
       hours: "Monday - Friday: 9:00 AM - 6:00 PM EST",
       isHeadquarters: true
@@ -30,7 +30,7 @@ const LocationsSection = () => {
       address: "752 Apple Terrace",
       city: "Milton, ON L9E 2C3", 
       country: "Canada",
-      phone: "+1 (905) 555-0124",
+      phone: "+1 905 749 5338",
       email: "milton@cs2technologies.ca",
       hours: "Monday - Friday: 9:00 AM - 6:00 PM EST",
       isHeadquarters: false
@@ -43,7 +43,7 @@ const LocationsSection = () => {
       title: "Phone Support",
       description: "Speak directly with our technical experts",
       action: "Call Now",
-      link: "tel:+14165550123"
+      link: "tel:+19057495338"
     },
     {
       icon: <Mail className="w-6 h-6" />,
@@ -95,7 +95,7 @@ const LocationsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 relative"
+              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 relative border-2 border-gray-400/60"
             >
               {location.isHeadquarters && (
                 <div className="absolute top-4 right-4">
@@ -127,7 +127,7 @@ const LocationsSection = () => {
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
                   <a 
-                    href={`tel:${location.phone}`}
+                    href={`tel:+${location.phone.replace(/\D/g, '')}`}
                     className="text-body-md text-primary hover:text-primary/80 transition-colors font-body"
                   >
                     {location.phone}
@@ -156,7 +156,7 @@ const LocationsSection = () => {
         </div>
 
         {/* Contact Methods */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
+        <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-400/60">
           <div className="text-center mb-8">
             <h3 className="text-heading-lg font-display text-gray-900 mb-4">
               Ready to Get Started?

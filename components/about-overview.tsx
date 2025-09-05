@@ -119,7 +119,7 @@ const AboutOverview = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-2 border-gray-400/60"
                 >
                   <div className="flex items-center mb-3">
                     <div className="p-2 bg-primary/10 rounded-lg text-primary mr-3">
@@ -142,7 +142,7 @@ const AboutOverview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-xl shadow-lg"
+              className="bg-white p-8 rounded-xl shadow-lg border-2 border-gray-400/60"
             >
               <h3 className="text-heading-md font-display text-gray-900 mb-6">
                 Why Choose CS2 Technologies?

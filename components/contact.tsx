@@ -5,17 +5,22 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  Mail,
+  Phone,
+  MapPin,
   Send,
   Clock,
   Globe,
   MessageSquare,
   CheckCircle,
   Calendar,
-  Sparkles
+  Sparkles,
+  User,
+  Building2,
+  Tag,
+  FileText,
+  Loader2
 } from 'lucide-react'
 
 const Contact = () => {
@@ -29,6 +34,7 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [consent, setConsent] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -71,8 +77,8 @@ const Contact = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      content: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      content: "+1 905 749 5338",
+      link: "tel:+19057495338"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -89,7 +95,7 @@ const Contact = () => {
   ]
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-primary/5 relative overflow-hidden">
+    <section className="pt-0 pb-20 px-4 bg-gradient-to-br from-gray-50 via-white to-primary/5 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full translate-y-32 -translate-x-32"></div>
@@ -122,7 +128,7 @@ const Contact = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Card className="h-full shadow-xl hover:shadow-2xl transition-shadow duration-300 border-2 border-gray-400/60 bg-white/80 backdrop-blur-sm">
+            <Card className="h-full shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-gray-400/60 bg-white/80 backdrop-blur-sm rounded-2xl">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
                   <div className="p-3 bg-gradient-to-br from-primary to-primary/80 rounded-lg mr-4">
@@ -142,93 +148,142 @@ const Contact = () => {
                     <p className="text-gray-600">We&apos;ll get back to you within 24 hours.</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Name *</label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 hover:border-gray-300"
-                        />
+                        <label className="block text-sm font-medium mb-2">Name <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                          <User className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            placeholder="Your full name"
+                            className="w-full rounded-xl border-2 border-gray-200 bg-white/90 px-4 py-3 pl-11 text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none"
+                          />
+                        </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">Email *</label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 hover:border-gray-300"
-                        />
+                        <label className="block text-sm font-medium mb-2">Email <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                          <Mail className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="you@company.com"
+                            className="w-full rounded-xl border-2 border-gray-200 bg-white/90 px-4 py-3 pl-11 text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none"
+                          />
+                        </div>
+                        <p className="mt-1 text-xs text-gray-500">We’ll never share your email.</p>
                       </div>
                     </div>
-                    
-                    <div className="grid grid-cols-2 gap-4">
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium mb-2">Company</label>
-                        <input
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 hover:border-gray-300"
-                        />
+                        <div className="relative">
+                          <Building2 className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="text"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            placeholder="Organization name"
+                            className="w-full rounded-xl border-2 border-gray-200 bg-white/90 px-4 py-3 pl-11 text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none"
+                          />
+                        </div>
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-2">Phone</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
+                        <div className="relative">
+                          <Phone className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="Optional"
+                            className="w-full rounded-xl border-2 border-gray-200 bg-white/90 px-4 py-3 pl-11 text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Subject <span className="text-red-500">*</span></label>
+                      <div className="relative">
+                        <Tag className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <select
+                          name="subject"
+                          value={formData.subject}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 hover:border-gray-300"
+                          required
+                          className="w-full appearance-none rounded-xl border-2 border-gray-200 bg-white/90 px-4 py-3 pl-11 text-gray-900 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none"
+                        >
+                          <option value="">Select a subject</option>
+                          <option value="cs2-health">CS2 Health Demo</option>
+                          <option value="b2b-ecommerce">B2B Ecommerce Solution</option>
+                          <option value="ai-consulting">AI Consulting</option>
+                          <option value="custom-development">Custom Development</option>
+                          <option value="partnership">Partnership Opportunity</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Message <span className="text-red-500">*</span></label>
+                      <div className="relative">
+                        <FileText className="w-5 h-5 text-gray-400 absolute left-3 top-4 pointer-events-none" />
+                        <textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          rows={7}
+                          placeholder="Tell us a bit about your goals..."
+                          className="w-full min-h-[220px] rounded-xl border-2 border-red-500 bg-white/90 px-4 py-3 pl-11 text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100 focus:outline-none resize-y"
                         />
                       </div>
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Subject *</label>
-                      <select
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
+
+                    <div className="flex items-start gap-3 rounded-xl bg-gray-50/60 border border-gray-200 p-4">
+                      <input
+                        id="consent"
+                        name="consent"
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 hover:border-gray-300"
-                      >
-                        <option value="">Select a subject</option>
-                        <option value="cs2-health">CS2 Health Demo</option>
-                        <option value="b2b-ecommerce">B2B Ecommerce Solution</option>
-                        <option value="ai-consulting">AI Consulting</option>
-                        <option value="custom-development">Custom Development</option>
-                        <option value="partnership">Partnership Opportunity</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Message *</label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={5}
-                        className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                        className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                       />
+                      <label htmlFor="consent" className="text-sm text-gray-600">
+                        I agree to be contacted about my inquiry and understand the data will be handled per the
+                        <Link href="/privacy" className="text-primary hover:text-primary/80 underline ml-1">Privacy Policy</Link>.
+                      </label>
                     </div>
-                    
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-3 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting || !consent}
+                      className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-3 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                      <Send className="ml-2 w-5 h-5" />
+                      {isSubmitting ? (
+                        <span className="inline-flex items-center">
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Sending...
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center">
+                          Send Message
+                          <Send className="ml-2 w-5 h-5" />
+                        </span>
+                      )}
                     </Button>
                   </form>
                 )}
@@ -243,7 +298,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 mb-6 border border-gray-100">
+            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 mb-6 border-2 border-gray-400/60">
               <div className="flex items-center mb-4">
                 <div className="p-2 bg-blue-100 rounded-lg mr-3">
                   <MessageSquare className="w-6 h-6 text-blue-600" />
@@ -266,7 +321,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-start p-5 bg-gradient-to-br from-white to-gray-50/50 rounded-xl hover:from-primary/5 hover:to-primary/10 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-100 hover:border-primary/20"
+                  className="flex items-start p-5 bg-gradient-to-br from-white to-gray-50/50 rounded-xl hover:from-primary/5 hover:to-primary/10 transition-all duration-300 shadow-md hover:shadow-lg border-2 border-gray-400/60 hover:border-primary/20"
                 >
                   <div className="p-2 bg-primary/10 rounded-lg text-primary mr-4 flex-shrink-0">{item.icon}</div>
                   <div>
@@ -277,7 +332,7 @@ const Contact = () => {
               ))}
             </div>
 
-            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 border-0 bg-gradient-to-br from-white to-gray-50/30">
+            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 border-gray-400/60 bg-gradient-to-br from-white to-gray-50/30">
               <CardContent className="p-6">
                 <div className="flex items-start mb-4">
                   <Clock className="w-6 h-6 text-primary mr-3" />

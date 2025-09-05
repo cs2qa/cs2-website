@@ -119,7 +119,7 @@ const Products = () => {
               <div className="grid grid-cols-2 gap-4">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white p-6 rounded-lg shadow-lg"
+                  className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                 >
                   <Users className="w-8 h-8 text-primary mb-3" />
                   <h5 className="font-semibold mb-1">Clinician-Friendly</h5>
@@ -128,7 +128,7 @@ const Products = () => {
                 
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white p-6 rounded-lg shadow-lg"
+                  className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                 >
                   <Clock className="w-8 h-8 text-primary mb-3" />
                   <h5 className="font-semibold mb-1">Time-Saving</h5>
@@ -137,7 +137,7 @@ const Products = () => {
                 
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white p-6 rounded-lg shadow-lg"
+                  className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                 >
                   <FileText className="w-8 h-8 text-primary mb-3" />
                   <h5 className="font-semibold mb-1">Accurate Documentation</h5>
@@ -146,7 +146,7 @@ const Products = () => {
                 
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white p-6 rounded-lg shadow-lg"
+                  className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                 >
                   <BarChart3 className="w-8 h-8 text-primary mb-3" />
                   <h5 className="font-semibold mb-1">Analytics & Insights</h5>
@@ -170,7 +170,7 @@ const Products = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white p-6 rounded-lg shadow-lg"
+                    className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                   >
                     <Building className="w-8 h-8 text-primary mb-3" />
                     <h5 className="font-semibold mb-1">Enterprise Ready</h5>
@@ -179,7 +179,7 @@ const Products = () => {
                   
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white p-6 rounded-lg shadow-lg"
+                    className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                   >
                     <Package className="w-8 h-8 text-primary mb-3" />
                     <h5 className="font-semibold mb-1">Smart Inventory</h5>
@@ -188,7 +188,7 @@ const Products = () => {
                   
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white p-6 rounded-lg shadow-lg"
+                    className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                   >
                     <TrendingUp className="w-8 h-8 text-primary mb-3" />
                     <h5 className="font-semibold mb-1">Revenue Growth</h5>
@@ -197,7 +197,7 @@ const Products = () => {
                   
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="bg-white p-6 rounded-lg shadow-lg"
+                    className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-400/60"
                   >
                     <Globe className="w-8 h-8 text-primary mb-3" />
                     <h5 className="font-semibold mb-1">Global Scale</h5>

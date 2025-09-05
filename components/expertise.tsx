@@ -127,7 +127,7 @@ const Expertise = () => {
               <TrendingUp className="w-8 h-8 text-primary mr-3" />
               AI Transformation Journey
             </h3>
-            <div className="bg-white rounded-lg p-6 shadow-lg">
+            <div className="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-400/60">
               <div className="space-y-4">
                 <div className="border-l-4 border-primary pl-4">
                   <h4 className="font-semibold mb-2">2008-2018: Telecom Consulting</h4>
@@ -186,7 +186,7 @@ const Expertise = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg p-6 text-center shadow-lg"
+              className="bg-white rounded-lg p-6 text-center shadow-lg border-2 border-gray-400/60"
             >
               <div className="text-3xl font-bold text-primary mb-2">
                 {achievement.metric}

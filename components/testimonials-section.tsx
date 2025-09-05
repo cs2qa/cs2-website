@@ -73,7 +73,7 @@ const TestimonialsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="text-center bg-white rounded-xl p-6 border-2 border-gray-400/60"
             >
               <div className="text-display-sm font-display text-primary mb-2">
                 {stat.number}
@@ -94,7 +94,7 @@ const TestimonialsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-xl p-8 relative"
+              className="bg-gray-50 rounded-xl p-8 relative border-2 border-gray-400/60"
             >
               <Quote className="w-8 h-8 text-primary/20 absolute top-6 right-6" />
               

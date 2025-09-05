@@ -99,7 +99,7 @@ const Services = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+              <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-2 border-gray-400/60">
                 <CardHeader>
                   <div className="text-primary mb-4">{service.icon}</div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>
@@ -125,7 +125,7 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="bg-white rounded-lg p-8 shadow-lg"
+          className="bg-white rounded-lg p-8 shadow-lg border-2 border-gray-400/60"
         >
           <h3 className="text-2xl font-bold mb-6 text-center">Technology Expertise</h3>
           <div className="flex flex-wrap gap-3 justify-center">
