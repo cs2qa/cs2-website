@@ -1,0 +1,29 @@
+{
+  "s3": {
+    "bucketName": "cs2technologies-website",
+    "region": "us-east-1"
+  },
+  "cloudfront": {
+    "distributionComment": "CS2 Technologies Website Distribution",
+    "defaultRootObject": "index.html",
+    "priceClass": "PriceClass_100",
+    "customErrorResponses": [
+      {
+        "errorCode": 404,
+        "responseCode": 200,
+        "responsePagePath": "/404.html",
+        "errorCachingMinTTL": 300
+      },
+      {
+        "errorCode": 403,
+        "responseCode": 200,
+        "responsePagePath": "/index.html",
+        "errorCachingMinTTL": 300
+      }
+    ]
+  },
+  "domain": {
+    "domainName": "cs2technologies.ca",
+    "certificateArn": "arn:aws:acm:us-east-1:YOUR_ACCOUNT_ID:certificate/YOUR_CERT_ID"
+  }
+}
