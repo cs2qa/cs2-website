@@ -128,7 +128,7 @@ const Contact = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Card className="h-full shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-gray-400/60 bg-white/80 backdrop-blur-sm rounded-2xl">
+            <Card className="h-full shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/80 backdrop-blur-sm rounded-2xl">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
                   <div className="p-3 bg-gradient-to-br from-primary to-primary/80 rounded-lg mr-4">
@@ -298,7 +298,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 mb-6 border-2 border-gray-400/60">
+            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 mb-6">
               <div className="flex items-center mb-4">
                 <div className="p-2 bg-blue-100 rounded-lg mr-3">
                   <MessageSquare className="w-6 h-6 text-blue-600" />
@@ -321,7 +321,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-start p-5 bg-gradient-to-br from-white to-gray-50/50 rounded-xl hover:from-primary/5 hover:to-primary/10 transition-all duration-300 shadow-md hover:shadow-lg border-2 border-gray-400/60 hover:border-primary/20"
+                  className="flex items-start p-5 bg-gradient-to-br from-white to-gray-50/50 rounded-xl hover:from-primary/5 hover:to-primary/10 transition-all duration-300 shadow-md hover:shadow-lg"
                 >
                   <div className="p-2 bg-primary/10 rounded-lg text-primary mr-4 flex-shrink-0">{item.icon}</div>
                   <div>
@@ -332,7 +332,7 @@ const Contact = () => {
               ))}
             </div>
 
-            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 border-gray-400/60 bg-gradient-to-br from-white to-gray-50/30">
+            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-white to-gray-50/30">
               <CardContent className="p-6">
                 <div className="flex items-start mb-4">
                   <Clock className="w-6 h-6 text-primary mr-3" />
@@ -370,12 +370,13 @@ const Contact = () => {
                   Schedule a personalized demo to see how CS2 Technologies can transform 
                   your business with AI.
                 </p>
-                <Link href="/demo">
-                  <Button className="bg-white text-primary hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3">
-                    <Calendar className="mr-2 w-5 h-5" />
-                    Book a Demo
-                  </Button>
-                </Link>
+                <Button disabled className="bg-white/50 text-gray-500 cursor-not-allowed shadow-lg px-6 py-3">
+                  <Calendar className="mr-2 w-5 h-5" />
+                  Book a Demo (Coming Soon)
+                </Button>
+                <p className="mt-3 text-sm text-white/80 font-body">
+                  Please email or call us to schedule a demo
+                </p>
               </div>
             </div>
           </motion.div>

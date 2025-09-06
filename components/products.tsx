@@ -34,14 +34,22 @@ const Products = () => {
 
         {/* CS2 Health Product */}
         <div className="mb-20">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 md:p-12">
+          <div className="relative bg-gradient-to-br from-red-500/10 via-pink-500/5 to-purple-500/10 rounded-2xl p-8 md:p-12 overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            {/* Animated gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-transparent to-purple-500/5 opacity-50"></div>
+            <div className="relative z-10">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="flex items-center mb-6">
-                  <Heart className="w-12 h-12 text-red-500 mr-4" />
-                  <h3 className="text-heading-lg font-display text-gray-900">
+                  <div className="p-3 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl shadow-lg hover:scale-110 transition-transform duration-300">
+                    <Heart className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-heading-lg font-display text-gray-900 ml-4">
                     CS2 Health
                   </h3>
+                  <span className="ml-auto px-3 py-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-sm font-semibold rounded-full animate-pulse">
+                    HIPAA Compliant
+                  </span>
                 </div>
                 
                 <p className="text-body-lg text-gray-700 mb-8 font-body">
@@ -51,22 +59,28 @@ const Products = () => {
                 </p>
 
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start group hover:translate-x-2 transition-transform duration-200">
+                    <div className="p-1 bg-gradient-to-br from-green-400 to-green-600 rounded-full mr-3 mt-0.5 flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Intelligent Knowledge Base Agent</h4>
                       <p className="text-gray-600 text-sm">AI assistant that understands medical context and provides instant answers</p>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start group hover:translate-x-2 transition-transform duration-200">
+                    <div className="p-1 bg-gradient-to-br from-green-400 to-green-600 rounded-full mr-3 mt-0.5 flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Clinical Notes Transcription</h4>
                       <p className="text-gray-600 text-sm">Convert voice notes to structured, searchable clinical documentation</p>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start group hover:translate-x-2 transition-transform duration-200">
+                    <div className="p-1 bg-gradient-to-br from-green-400 to-green-600 rounded-full mr-3 mt-0.5 flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">EHR Integration</h4>
                       <p className="text-gray-600 text-sm">Seamlessly integrates with existing Electronic Health Record systems</p>
@@ -108,12 +122,16 @@ const Products = () => {
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </div>
 
         {/* B2B Commerce Product */}
         <div className="mb-20">
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 md:p-12">
+          <div className="relative bg-gradient-to-br from-green-500/10 via-teal-500/5 to-blue-500/10 rounded-2xl p-8 md:p-12 overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            {/* Animated gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-blue-500/5 opacity-50"></div>
+            <div className="relative z-10">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="order-2 md:order-1 relative">
                 <div className="bg-white rounded-xl shadow-2xl p-6">
@@ -139,10 +157,15 @@ const Products = () => {
 
               <div className="order-1 md:order-2">
                 <div className="flex items-center mb-6">
-                  <ShoppingCart className="w-12 h-12 text-green-500 mr-4" />
-                  <h3 className="text-heading-lg font-display text-gray-900">
+                  <div className="p-3 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl shadow-lg hover:scale-110 transition-transform duration-300">
+                    <ShoppingCart className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-heading-lg font-display text-gray-900 ml-4">
                     B2B Commerce Platform
                   </h3>
+                  <span className="ml-auto px-3 py-1 bg-gradient-to-r from-green-500 to-teal-500 text-white text-sm font-semibold rounded-full">
+                    AI-Powered
+                  </span>
                 </div>
                 
                 <p className="text-body-lg text-gray-700 mb-8 font-body">
@@ -152,22 +175,28 @@ const Products = () => {
                 </p>
 
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start group hover:translate-x-2 transition-transform duration-200">
+                    <div className="p-1 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mr-3 mt-0.5 flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">AI-Powered Product Recommendations</h4>
                       <p className="text-gray-600 text-sm">Machine learning algorithms suggest relevant products based on purchase history</p>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start group hover:translate-x-2 transition-transform duration-200">
+                    <div className="p-1 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mr-3 mt-0.5 flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Smart Search & Discovery</h4>
                       <p className="text-gray-600 text-sm">Advanced search capabilities with natural language processing</p>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start group hover:translate-x-2 transition-transform duration-200">
+                    <div className="p-1 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mr-3 mt-0.5 flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Automated Procurement</h4>
                       <p className="text-gray-600 text-sm">Streamlined ordering process with approval workflows and budget controls</p>
@@ -190,17 +219,18 @@ const Products = () => {
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </div>
 
         {/* Product Comparison */}
-        <div className="bg-gray-50 rounded-2xl p-8 md:p-12 mb-16">
-          <h3 className="text-heading-lg font-display text-gray-900 text-center mb-12">
+        <div className="bg-gray-50 rounded-2xl p-6 md:p-8 mb-16">
+          <h3 className="text-heading-lg font-display text-gray-900 text-center mb-8">
             Choose the Right Solution for Your Business
           </h3>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl p-8 shadow-lg">
+            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-gray-300">
               <div className="text-center mb-6">
                 <Heart className="w-16 h-16 text-red-500 mx-auto mb-4" />
                 <h4 className="text-heading-md font-display text-gray-900 mb-2">CS2 Health</h4>
@@ -233,7 +263,7 @@ const Products = () => {
               </Link>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg">
+            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-gray-300">
               <div className="text-center mb-6">
                 <ShoppingCart className="w-16 h-16 text-green-500 mx-auto mb-4" />
                 <h4 className="text-heading-md font-display text-gray-900 mb-2">B2B Commerce</h4>

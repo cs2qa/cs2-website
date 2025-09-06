@@ -180,7 +180,7 @@ export default function GetStarted() {
                           <p className="text-xs text-gray-500">Best for: {solution.bestFor}</p>
                         </div>
                         
-                        <Button className="w-full bg-primary hover:bg-primary/90">
+                        <Button className="w-full bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
                           Select This Solution
                           <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
@@ -315,15 +315,15 @@ export default function GetStarted() {
 
                       <Button 
                         type="submit" 
-                        className="w-full bg-primary hover:bg-primary/90"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          setCurrentStep(3)
-                        }}
+                        disabled
+                        className="w-full bg-gray-300 text-gray-500 cursor-not-allowed shadow-md"
                       >
-                        Get My Custom Quote
+                        Get My Custom Quote (Coming Soon)
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
+                      <p className="text-center text-sm text-gray-600 mt-3">
+                        Please email us at info@cs2technologies.ca or call +1 905 749 5338 for a custom quote
+                      </p>
                     </form>
                   </CardContent>
                 </Card>
@@ -380,13 +380,13 @@ export default function GetStarted() {
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/demo">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90">
+                    <Button size="lg" className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
                       Schedule Demo Now
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
                   <Link href="/solutions">
-                    <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
+                    <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 shadow-md hover:shadow-lg transition-all duration-300">
                       Explore More Solutions
                     </Button>
                   </Link>
