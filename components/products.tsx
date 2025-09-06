@@ -20,9 +20,9 @@ import {
 
 const Products = () => {
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="py-12 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-display-sm font-display text-gray-900 mb-6">
             Our Flagship Products
           </h2>

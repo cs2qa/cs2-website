@@ -65,9 +65,9 @@ const Services = () => {
 
 
   return (
-    <section className="py-20 px-4 bg-gray-50">
+    <section className="py-12 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-display-sm font-display text-gray-900 mb-6">
             Comprehensive Technology Services
           </h2>
@@ -104,7 +104,7 @@ const Services = () => {
         </div>
 
         {/* Enterprise Solutions Section */}
-        <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 shadow-xl mb-16 text-white">
+        <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 shadow-xl text-white">
           <h3 className="text-heading-lg font-display text-white text-center mb-12">
             Enterprise Solutions & Legacy Modernization
           </h3>
@@ -214,57 +214,125 @@ const Services = () => {
         </div>
 
         {/* Technologies Section */}
-        <div className="bg-gradient-to-r from-primary/5 to-blue-500/5 rounded-2xl p-8 md:p-12">
-          <h3 className="text-heading-lg font-display text-gray-900 text-center mb-12">
-            Technologies We Work With
-          </h3>
+        <div className="relative bg-gradient-to-br from-white via-primary/5 to-blue-500/10 rounded-2xl p-6 md:p-8 overflow-hidden">
+          {/* Subtle animated gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-blue-500/5 opacity-50"></div>
           
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
-                <Brain className="w-6 h-6 text-primary mr-2" />
-                AI & Data
-              </h4>
-              <div className="space-y-2">
-                {["Python", "TensorFlow", "PyTorch", "OpenAI", "Hugging Face", "LangChain", "Spring AI"].map((tech) => (
-                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
-                ))}
+          <div className="relative z-10">
+            <h3 className="text-heading-lg font-display text-gray-900 text-center mb-3">
+              Technologies We Work With
+            </h3>
+            <p className="text-center text-gray-600 mb-8 text-body-md max-w-2xl mx-auto">
+              Leveraging cutting-edge tools and frameworks to deliver enterprise-grade solutions
+            </p>
+            
+            <div className="grid md:grid-cols-4 gap-6">
+              {/* AI & Data */}
+              <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20">
+                <div className="flex items-center mb-4">
+                  <div className="p-2 bg-gradient-to-br from-purple-500 to-primary rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    <Brain className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-heading-sm font-display text-gray-900 ml-3">
+                    AI & Data
+                  </h4>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["Python", "TensorFlow", "PyTorch", "OpenAI", "Hugging Face", "LangChain", "Spring AI"].map((tech, index) => (
+                    <span 
+                      key={tech} 
+                      className="px-2 py-1 bg-gradient-to-r from-purple-50 to-primary/10 text-gray-700 text-xs font-medium rounded-md border border-purple-200/50 hover:border-purple-300 hover:bg-purple-100 transition-all duration-200 cursor-pointer"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Enterprise */}
+              <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20">
+                <div className="flex items-center mb-4">
+                  <div className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    <Building2 className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-heading-sm font-display text-gray-900 ml-3">
+                    Enterprise
+                  </h4>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["Java", "Spring Boot", "Spring Cloud", "J2EE/EJB", "Hibernate", "Apache Kafka", "Maven/Gradle"].map((tech, index) => (
+                    <span 
+                      key={tech} 
+                      className="px-2 py-1 bg-gradient-to-r from-orange-50 to-red-50 text-gray-700 text-xs font-medium rounded-md border border-orange-200/50 hover:border-orange-300 hover:bg-orange-100 transition-all duration-200 cursor-pointer"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Modern Stack */}
+              <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20">
+                <div className="flex items-center mb-4">
+                  <div className="p-2 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    <Cpu className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-heading-sm font-display text-gray-900 ml-3">
+                    Modern Stack
+                  </h4>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["React", "Next.js", "Node.js", "TypeScript", "GraphQL", "REST APIs", "Microservices"].map((tech, index) => (
+                    <span 
+                      key={tech} 
+                      className="px-2 py-1 bg-gradient-to-r from-green-50 to-teal-50 text-gray-700 text-xs font-medium rounded-md border border-green-200/50 hover:border-green-300 hover:bg-green-100 transition-all duration-200 cursor-pointer"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Infrastructure */}
+              <div className="group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20">
+                <div className="flex items-center mb-4">
+                  <div className="p-2 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    <Server className="w-6 h-6 text-white" />
+                  </div>
+                  <h4 className="text-heading-sm font-display text-gray-900 ml-3">
+                    Infrastructure
+                  </h4>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["OpenStack", "AWS", "Google Cloud", "Docker", "Kubernetes", "Terraform", "Ansible"].map((tech, index) => (
+                    <span 
+                      key={tech} 
+                      className="px-2 py-1 bg-gradient-to-r from-blue-50 to-cyan-50 text-gray-700 text-xs font-medium rounded-md border border-blue-200/50 hover:border-blue-300 hover:bg-blue-100 transition-all duration-200 cursor-pointer"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-            
-            <div>
-              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
-                <Building2 className="w-6 h-6 text-primary mr-2" />
-                Enterprise
-              </h4>
-              <div className="space-y-2">
-                {["Java", "Spring Boot", "Spring Cloud", "J2EE/EJB", "Hibernate", "Apache Kafka", "Maven/Gradle"].map((tech) => (
-                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
-                ))}
+
+            {/* Statistics Bar */}
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-gradient-to-r from-primary/10 via-blue-500/10 to-primary/10 rounded-xl">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">30+</div>
+                <div className="text-sm text-gray-600">Technologies</div>
               </div>
-            </div>
-            
-            <div>
-              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
-                <Cpu className="w-6 h-6 text-primary mr-2" />
-                Modern Stack
-              </h4>
-              <div className="space-y-2">
-                {["React", "Next.js", "Node.js", "TypeScript", "GraphQL", "REST APIs", "Microservices"].map((tech) => (
-                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
-                ))}
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">4</div>
+                <div className="text-sm text-gray-600">Core Domains</div>
               </div>
-            </div>
-            
-            <div>
-              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
-                <Server className="w-6 h-6 text-primary mr-2" />
-                Infrastructure
-              </h4>
-              <div className="space-y-2">
-                {["OpenStack", "AWS", "Google Cloud", "Docker", "Kubernetes", "Terraform", "Ansible"].map((tech) => (
-                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
-                ))}
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">100%</div>
+                <div className="text-sm text-gray-600">Cloud Native</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">24/7</div>
+                <div className="text-sm text-gray-600">Support</div>
               </div>
             </div>
           </div>
