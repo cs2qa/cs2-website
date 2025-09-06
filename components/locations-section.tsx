@@ -174,7 +174,7 @@ const LocationsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center group bg-white rounded-xl p-6 border-2 border-gray-400/60 shadow-sm"
+                className="text-center group bg-white rounded-xl p-6 shadow-sm"
               >
                 <div className="flex justify-center mb-4">
                   <div className="p-4 bg-primary/10 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">

@@ -12,9 +12,7 @@ import {
   GitBranch,
   Cpu,
   Shield,
-  Zap,
-  Building2,
-  Server
+  Zap
 } from 'lucide-react'
 
 const Services = () => {
@@ -38,16 +36,10 @@ const Services = () => {
       features: ["Natural Language Processing", "Multi-channel Support", "Context Awareness", "Custom Training"]
     },
     {
-      icon: <Building2 className="w-10 h-10" />,
-      title: "Enterprise Java Solutions",
-      description: "Modern and legacy Java enterprise application development and maintenance",
-      features: ["Spring Boot & Spring AI", "Microservices Architecture", "J2EE/EJB Migration", "Legacy System Modernization"]
-    },
-    {
-      icon: <Server className="w-10 h-10" />,
-      title: "Cloud Infrastructure",
-      description: "Multi-cloud infrastructure with OpenStack, AWS, and Google Cloud expertise",
-      features: ["OpenStack Deployment", "Private Cloud Solutions", "Hybrid Cloud Architecture", "Infrastructure as Code"]
+      icon: <Cloud className="w-10 h-10" />,
+      title: "Cloud Solutions",
+      description: "Scalable cloud infrastructure on AWS and Google Cloud platforms",
+      features: ["Cloud Migration", "DevOps & CI/CD", "Auto-scaling", "Security & Compliance"]
     },
     {
       icon: <Smartphone className="w-10 h-10" />,
@@ -62,7 +54,6 @@ const Services = () => {
       features: ["HIPAA Compliance", "Data Encryption", "Access Control", "Security Audits"]
     }
   ]
-
 
   return (
     <section className="py-20 px-4 bg-gray-50">
@@ -101,75 +92,6 @@ const Services = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Enterprise Solutions Section */}
-        <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 shadow-xl mb-16 text-white">
-          <h3 className="text-heading-lg font-display text-white text-center mb-12">
-            Enterprise Solutions & Legacy Modernization
-          </h3>
-          
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <h4 className="text-heading-sm font-display text-white mb-4">
-                Java Enterprise Development
-              </h4>
-              <p className="text-body-md text-gray-200 mb-4 font-body">
-                Comprehensive Java enterprise solutions leveraging modern frameworks and maintaining legacy systems
-              </p>
-              <div className="space-y-2">
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">Spring Boot & Spring Cloud microservices</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">Spring AI for intelligent applications</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">J2EE, EJB, and legacy Java maintenance</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">WebSphere, WebLogic, JBoss expertise</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <h4 className="text-heading-sm font-display text-white mb-4">
-                Legacy System Modernization
-              </h4>
-              <p className="text-body-md text-gray-200 mb-4 font-body">
-                Transform and modernize your legacy infrastructure while maintaining business continuity
-              </p>
-              <div className="space-y-2">
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">COBOL to Java/Cloud migration</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">Monolith to microservices transformation</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">Database modernization & migration</span>
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                  <span className="text-body-sm">API-first architecture implementation</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <p className="text-body-lg text-gray-300 font-body">
-              20+ years of experience in enterprise Java development and legacy system transformation
-            </p>
-          </div>
         </div>
 
         {/* Process Section */}
@@ -219,26 +141,14 @@ const Services = () => {
             Technologies We Work With
           </h3>
           
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
                 <Brain className="w-6 h-6 text-primary mr-2" />
                 AI & Data
               </h4>
               <div className="space-y-2">
-                {["Python", "TensorFlow", "PyTorch", "OpenAI", "Hugging Face", "LangChain", "Spring AI"].map((tech) => (
-                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
-                <Building2 className="w-6 h-6 text-primary mr-2" />
-                Enterprise
-              </h4>
-              <div className="space-y-2">
-                {["Java", "Spring Boot", "Spring Cloud", "J2EE/EJB", "Hibernate", "Apache Kafka", "Maven/Gradle"].map((tech) => (
+                {["Python", "TensorFlow", "PyTorch", "OpenAI", "Hugging Face", "LangChain"].map((tech) => (
                   <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
                 ))}
               </div>
@@ -247,10 +157,10 @@ const Services = () => {
             <div>
               <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
                 <Cpu className="w-6 h-6 text-primary mr-2" />
-                Modern Stack
+                Development
               </h4>
               <div className="space-y-2">
-                {["React", "Next.js", "Node.js", "TypeScript", "GraphQL", "REST APIs", "Microservices"].map((tech) => (
+                {["React", "Next.js", "Node.js", "TypeScript", "GraphQL", "REST APIs"].map((tech) => (
                   <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
                 ))}
               </div>
@@ -258,18 +168,17 @@ const Services = () => {
             
             <div>
               <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
-                <Server className="w-6 h-6 text-primary mr-2" />
+                <Cloud className="w-6 h-6 text-primary mr-2" />
                 Infrastructure
               </h4>
               <div className="space-y-2">
-                {["OpenStack", "AWS", "Google Cloud", "Docker", "Kubernetes", "Terraform", "Ansible"].map((tech) => (
+                {["AWS", "Google Cloud", "Docker", "Kubernetes", "PostgreSQL", "MongoDB"].map((tech) => (
                   <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   )
