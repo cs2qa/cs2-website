@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { 
   Brain, 
@@ -67,35 +66,19 @@ const ServicesSection = () => {
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-display-sm font-display text-gray-900 mb-4"
-          >
+          <h2 className="text-display-sm font-display text-gray-900 mb-4">
             Comprehensive Technology Solutions
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-body-lg text-gray-600 max-w-3xl mx-auto font-body"
-          >
+          </h2>
+          <p className="text-body-lg text-gray-600 max-w-3xl mx-auto font-body">
             From AI-powered innovations to cloud infrastructure, we deliver cutting-edge solutions 
             that drive business transformation across industries.
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="bg-white rounded-xl p-8 shadow-xl transition-shadow duration-300 group border-2 border-gray-400/60"
             >
               <div className="flex items-center mb-4">
@@ -125,24 +108,19 @@ const ServicesSection = () => {
                 Learn More
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <Link href="/services">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
                 View All Services
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

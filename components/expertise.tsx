@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -128,13 +127,7 @@ const Expertise = () => {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full translate-y-32 -translate-x-32"></div>
       
       <div className="max-w-7xl mx-auto relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full text-primary font-medium mb-4 shadow-sm">
             <Cpu className="w-4 h-4 mr-2" />
             Technology Expertise
@@ -146,18 +139,14 @@ const Expertise = () => {
             Our comprehensive technology stack and development practices enable us to deliver 
             enterprise-grade solutions that scale, perform, and innovate.
           </p>
-        </motion.div>
+        </div>
 
         {/* Core Technical Expertise */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {technicalExpertise.map((item, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300"
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-xl transition-shadow duration-200"
             >
               <div className="flex items-center mb-4">
                 <div className="p-3 bg-gradient-to-br from-primary to-primary/80 rounded-lg text-white mr-4">
@@ -180,18 +169,12 @@ const Expertise = () => {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Development Practices */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 mb-16 shadow-lg"
-        >
+        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 mb-16 shadow-lg">
           <div className="text-center mb-8">
             <h3 className="text-heading-lg font-display text-gray-900 mb-4">
               Development Excellence
@@ -204,12 +187,8 @@ const Expertise = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {developmentPractices.map((practice, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="text-center"
               >
                 <div className="flex justify-center mb-3">
@@ -223,53 +202,33 @@ const Expertise = () => {
                 <p className="text-body-sm text-gray-600 font-body">
                   {practice.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Technology Stack */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h3 className="text-heading-lg font-display text-gray-900 mb-6">
             Our Technology Stack
           </h3>
           <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
             {techStack.map((tech, index) => (
-              <motion.span
+              <span
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.03 }}
-                viewport={{ once: true }}
                 className="bg-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 text-body-sm font-medium text-gray-700 border border-gray-200 hover:border-primary/30"
               >
                 {tech}
-              </motion.span>
+              </span>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Achievements */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {achievements.map((achievement, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              viewport={{ once: true }}
               className="bg-white rounded-xl p-6 text-center shadow-lg"
             >
               <div className="text-display-sm font-display text-primary mb-2">
@@ -281,18 +240,12 @@ const Expertise = () => {
               <div className="text-body-sm text-gray-600 font-body">
                 {achievement.description}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-2xl p-8 text-white text-center shadow-xl relative overflow-hidden"
-        >
+        <div className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 rounded-2xl p-8 text-white text-center shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
           
@@ -329,7 +282,7 @@ const Expertise = () => {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

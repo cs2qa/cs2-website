@@ -6,7 +6,7 @@ export default function ExpertisePage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <div className="pt-20">
+      <div className="pt-28">
         <Expertise />
       </div>
       <Footer />

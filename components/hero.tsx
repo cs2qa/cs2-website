@@ -2,19 +2,14 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Brain, Cloud, Sparkles } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+    <section className="min-h-screen pt-28 px-4 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div>
           <div className="flex justify-center items-center mb-6 space-x-2">
             <Brain className="w-6 h-6 text-primary" />
             <span className="text-body-sm font-medium text-gray-600 tracking-wide uppercase">Leading Innovation in AI</span>
@@ -47,40 +42,25 @@ const Hero = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-lg shadow-xl transition-shadow"
-            >
+            <div className="bg-white p-6 rounded-lg shadow-xl transition-shadow">
               <Cloud className="w-12 h-12 text-primary mb-4 mx-auto" />
               <h3 className="text-heading-sm font-display mb-2">Cloud-Native Solutions</h3>
               <p className="text-body-md text-gray-600 font-body">Scalable AWS & Google Cloud deployments</p>
-            </motion.div>
+            </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-lg shadow-xl transition-shadow"
-            >
+            <div className="bg-white p-6 rounded-lg shadow-xl transition-shadow">
               <Brain className="w-12 h-12 text-primary mb-4 mx-auto" />
               <h3 className="text-heading-sm font-display mb-2">AI-Powered Innovation</h3>
               <p className="text-body-md text-gray-600 font-body">RAG, LLMs, and Knowledge Graphs</p>
-            </motion.div>
+            </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-lg shadow-xl transition-shadow"
-            >
+            <div className="bg-white p-6 rounded-lg shadow-xl transition-shadow">
               <Sparkles className="w-12 h-12 text-primary mb-4 mx-auto" />
               <h3 className="text-heading-sm font-display mb-2">Healthcare Excellence</h3>
               <p className="text-body-md text-gray-600 font-body">Transforming clinical workflows with AI</p>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

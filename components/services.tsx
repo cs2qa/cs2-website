@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { 
   Brain, 
@@ -28,145 +27,160 @@ const Services = () => {
       icon: <Database className="w-10 h-10" />,
       title: "RAG & Knowledge Graphs",
       description: "Advanced retrieval systems and graph-based knowledge management",
-      features: ["Vector Databases", "Semantic Search", "Knowledge Extraction", "Graph Analytics"]
+      features: ["Knowledge Base Construction", "Semantic Search", "Graph Analytics", "Information Retrieval"]
     },
     {
       icon: <MessageSquare className="w-10 h-10" />,
-      title: "AI Chatbots",
-      description: "Intelligent conversational interfaces for customer service and support",
-      features: ["Natural Language Processing", "Multi-language Support", "Context Awareness", "Sentiment Analysis"]
+      title: "AI Chatbots & Assistants",
+      description: "Intelligent conversational agents tailored to your business needs",
+      features: ["Natural Language Processing", "Multi-channel Support", "Context Awareness", "Custom Training"]
     },
     {
       icon: <Cloud className="w-10 h-10" />,
       title: "Cloud Solutions",
-      description: "Scalable cloud infrastructure on AWS and Google Cloud Platform",
-      features: ["Cloud Migration", "Serverless Architecture", "Auto-scaling", "Cost Optimization"]
+      description: "Scalable cloud infrastructure on AWS and Google Cloud platforms",
+      features: ["Cloud Migration", "DevOps & CI/CD", "Auto-scaling", "Security & Compliance"]
     },
     {
       icon: <Smartphone className="w-10 h-10" />,
-      title: "Mobile Development",
-      description: "Native and hybrid mobile applications for iOS and Android",
-      features: ["React Native", "Flutter", "Native iOS/Android", "Cross-platform Solutions"]
+      title: "Full-Stack Development",
+      description: "End-to-end web and mobile application development",
+      features: ["React/Next.js", "Mobile Apps", "API Development", "Database Design"]
     },
     {
-      icon: <Globe className="w-10 h-10" />,
-      title: "Web Applications",
-      description: "Modern, responsive web applications with cutting-edge technologies",
-      features: ["Progressive Web Apps", "Real-time Applications", "API Development", "Microservices"]
+      icon: <Shield className="w-10 h-10" />,
+      title: "Security & Compliance",
+      description: "Enterprise-grade security and regulatory compliance solutions",
+      features: ["HIPAA Compliance", "Data Encryption", "Access Control", "Security Audits"]
     }
   ]
 
-  const techStack = [
-    { name: "OpenAI GPT", category: "LLM" },
-    { name: "Claude", category: "LLM" },
-    { name: "LLaMA", category: "Open Source" },
-    { name: "Mistral", category: "Open Source" },
-    { name: "TensorFlow", category: "ML Framework" },
-    { name: "PyTorch", category: "ML Framework" },
-    { name: "AWS", category: "Cloud" },
-    { name: "Google Cloud", category: "Cloud" },
-    { name: "React/Next.js", category: "Frontend" },
-    { name: "Node.js", category: "Backend" },
-    { name: "Python", category: "Backend" },
-    { name: "PostgreSQL", category: "Database" }
-  ]
 
   return (
     <section className="py-20 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our Technology Stack & Services
+        <div className="text-center mb-16">
+          <h2 className="text-display-sm font-display text-gray-900 mb-6">
+            Comprehensive Technology Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive solutions powered by the latest technologies and frameworks, 
-            delivered with expertise gained from years of enterprise consulting.
+          <p className="text-body-lg text-gray-600 max-w-3xl mx-auto font-body">
+            From AI development to cloud deployment, we provide end-to-end technology 
+            solutions that drive business transformation and competitive advantage.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-2 border-gray-400/60">
-                <CardHeader>
-                  <div className="text-primary mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <Zap className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex items-center mb-4">
+                  <div className="p-3 bg-primary/10 rounded-lg text-primary mr-4">
+                    {service.icon}
+                  </div>
+                </div>
+                <CardTitle className="text-heading-sm font-display">{service.title}</CardTitle>
+                <CardDescription className="text-body-md font-body">{service.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {service.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-center text-body-sm text-gray-600 font-body">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0"></div>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-white rounded-lg p-8 shadow-lg border-2 border-gray-400/60"
-        >
-          <h3 className="text-2xl font-bold mb-6 text-center">Technology Expertise</h3>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {techStack.map((tech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="bg-gray-100 hover:bg-primary hover:text-white transition-colors duration-300 px-4 py-2 rounded-full"
-              >
-                <span className="text-sm font-medium">{tech.name}</span>
-              </motion.div>
-            ))}
+        {/* Process Section */}
+        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg mb-16">
+          <h3 className="text-heading-lg font-display text-gray-900 text-center mb-12">
+            Our Proven Development Process
+          </h3>
+          
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-primary">1</span>
+              </div>
+              <h4 className="text-heading-sm font-display text-gray-900 mb-2">Discovery</h4>
+              <p className="text-body-sm text-gray-600 font-body">We analyze your requirements and define project scope</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-primary">2</span>
+              </div>
+              <h4 className="text-heading-sm font-display text-gray-900 mb-2">Design</h4>
+              <p className="text-body-sm text-gray-600 font-body">Architecture and system design with your approval</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-primary">3</span>
+              </div>
+              <h4 className="text-heading-sm font-display text-gray-900 mb-2">Development</h4>
+              <p className="text-body-sm text-gray-600 font-body">Agile development with regular progress updates</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-primary">4</span>
+              </div>
+              <h4 className="text-heading-sm font-display text-gray-900 mb-2">Deploy</h4>
+              <p className="text-body-sm text-gray-600 font-body">Production deployment with ongoing support</p>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          <div className="text-center">
-            <Shield className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h4 className="font-semibold text-lg mb-2">Enterprise Security</h4>
-            <p className="text-gray-600">HIPAA compliant, SOC2 certified solutions with end-to-end encryption</p>
+        {/* Technologies Section */}
+        <div className="bg-gradient-to-r from-primary/5 to-blue-500/5 rounded-2xl p-8 md:p-12">
+          <h3 className="text-heading-lg font-display text-gray-900 text-center mb-12">
+            Technologies We Work With
+          </h3>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
+                <Brain className="w-6 h-6 text-primary mr-2" />
+                AI & Data
+              </h4>
+              <div className="space-y-2">
+                {["Python", "TensorFlow", "PyTorch", "OpenAI", "Hugging Face", "LangChain"].map((tech) => (
+                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
+                <Cpu className="w-6 h-6 text-primary mr-2" />
+                Development
+              </h4>
+              <div className="space-y-2">
+                {["React", "Next.js", "Node.js", "TypeScript", "GraphQL", "REST APIs"].map((tech) => (
+                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-heading-sm font-display text-gray-900 mb-4 flex items-center">
+                <Cloud className="w-6 h-6 text-primary mr-2" />
+                Infrastructure
+              </h4>
+              <div className="space-y-2">
+                {["AWS", "Google Cloud", "Docker", "Kubernetes", "PostgreSQL", "MongoDB"].map((tech) => (
+                  <div key={tech} className="text-body-sm text-gray-600 font-body">{tech}</div>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="text-center">
-            <GitBranch className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h4 className="font-semibold text-lg mb-2">Open Source Philosophy</h4>
-            <p className="text-gray-600">Transparent, auditable code with active community contribution</p>
-          </div>
-          <div className="text-center">
-            <Cpu className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h4 className="font-semibold text-lg mb-2">Performance Optimized</h4>
-            <p className="text-gray-600">Edge computing and distributed processing for minimal latency</p>
-          </div>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   )
