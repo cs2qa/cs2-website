@@ -18,9 +18,9 @@ const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGIN
 
 // Rate limiting configuration
 const RATE_LIMITS = {
-  perIP: { count: 5, windowMinutes: 60 },      // 5 emails per IP per hour
-  perEmail: { count: 3, windowMinutes: 60 },   // 3 emails per email address per hour
-  global: { count: 50, windowMinutes: 60 }     // 50 total emails per hour
+  perIP: { count: 20, windowMinutes: 60 },      // 20 emails per IP per hour
+  perEmail: { count: 10, windowMinutes: 60 },   // 10 emails per email address per hour
+  global: { count: 100, windowMinutes: 60 }     // 100 total emails per hour
 };
 
 exports.handler = async (event) => {

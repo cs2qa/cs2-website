@@ -51,7 +51,7 @@ const Contact = () => {
       // Get API URL from environment or use placeholder
       const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'YOUR_API_GATEWAY_URL_HERE'
       
-      const response = await fetch(`${apiUrl}/contact`, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

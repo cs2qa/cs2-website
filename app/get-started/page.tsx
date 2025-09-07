@@ -136,7 +136,7 @@ Best For: ${selectedSol?.bestFor}
         `
       }
       
-      const response = await fetch(`${apiUrl}/contact`, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
