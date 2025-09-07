@@ -34,11 +34,11 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/products', label: 'Products' },
-    { href: '/expertise', label: 'Expertise' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/about/', label: 'About' },
+    { href: '/services/', label: 'Services' },
+    { href: '/products/', label: 'Products' },
+    { href: '/expertise/', label: 'Expertise' },
+    { href: '/contact/', label: 'Contact' },
   ]
 
   return (
@@ -47,7 +47,7 @@ export default function Navigation() {
         <div className="fixed top-0 inset-x-0 z-50">
           <div className="h-10 flex items-center justify-center px-4 bg-gradient-to-r from-primary to-blue-600 text-white text-sm">
             <span className="mr-3">Free consultation available — limited slots this month.</span>
-            <Link href="/demo" className="underline underline-offset-2 font-medium hover:text-white/90">Book now</Link>
+            <Link href="/demo/" className="underline underline-offset-2 font-medium hover:text-white/90">Book now</Link>
             <button
               aria-label="Dismiss announcement"
               onClick={dismissBanner}
@@ -105,7 +105,7 @@ export default function Navigation() {
                 </Link>
               )
             })}
-            <Link href="/get-started" className="ml-2">
+            <Link href="/get-started/" className="ml-2">
               <Button 
                 size="lg" 
                 className="relative bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white px-6 shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border border-primary/20 overflow-hidden group"
@@ -155,7 +155,7 @@ export default function Navigation() {
                 </Link>
               )
             })}
-            <Link href="/get-started">
+            <Link href="/get-started/">
               <Button size="lg" className="w-full bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white px-8 mt-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-primary/20">
                 Get Started
                 <ArrowRight className="ml-2 w-5 h-5" />

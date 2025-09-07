@@ -1,0 +1,12 @@
+aws_region = "us-east-1"
+
+domain_names = [
+  "cs2technologies.com"
+]
+
+www_domain_names = [
+  "www.cs2technologies.com"
+]
+
+environment  = "production"
+project_name = "cs2technologies"

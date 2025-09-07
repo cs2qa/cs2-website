@@ -157,13 +157,13 @@ export default function ScheduleDemo() {
               </Card>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/get-started">
+                <Link href="/get-started/">
                   <Button size="lg" className="bg-primary hover:bg-primary/90">
                     Start Your Journey
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Link href="/solutions">
+                <Link href="/solutions/">
                   <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
                     Explore Solutions
                   </Button>

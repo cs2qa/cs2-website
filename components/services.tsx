@@ -14,7 +14,8 @@ import {
   Shield,
   Zap,
   Building2,
-  Server
+  Server,
+  Briefcase
 } from 'lucide-react'
 
 const Services = () => {
@@ -68,6 +69,10 @@ const Services = () => {
     <section className="py-12 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full text-primary font-medium mb-4 shadow-sm">
+            <Briefcase className="w-4 h-4 mr-2" />
+            Our Services
+          </div>
           <h2 className="text-display-sm font-display text-gray-900 mb-6">
             Comprehensive Technology Services
           </h2>

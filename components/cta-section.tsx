@@ -77,13 +77,13 @@ const CTASection = () => {
               viewport={{ once: true }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Link href="/demo">
+              <Link href="/demo/">
                 <Button size="lg" className="bg-white text-primary hover:bg-gray-100 px-8">
                   <Calendar className="mr-2 w-5 h-5" />
                   Schedule Free Consultation
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="/contact/">
                 <Button 
                   size="lg" 
                   variant="outline" 
@@ -137,7 +137,7 @@ const CTASection = () => {
               </div>
             </div>
             
-            <Link href="/get-started" className="block">
+            <Link href="/get-started/" className="block">
               <Button size="lg" className="w-full bg-white text-primary hover:bg-gray-100">
                 Get Detailed Quote
                 <ArrowRight className="ml-2 w-5 h-5" />

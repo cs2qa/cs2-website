@@ -10,7 +10,8 @@ import {
   Target, 
   Lightbulb,
   ArrowRight,
-  CheckCircle 
+  CheckCircle,
+  Building2
 } from 'lucide-react'
 
 const AboutOverview = () => {
@@ -47,15 +48,25 @@ const AboutOverview = () => {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-10 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div>
-            <motion.h2
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full text-primary font-medium mb-4 shadow-sm"
+            >
+              <Building2 className="w-4 h-4 mr-2" />
+              About CS2 Technologies
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
               className="text-display-sm font-display text-gray-900 mb-6"
             >
@@ -67,7 +78,7 @@ const AboutOverview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-body-lg text-gray-600 mb-8 font-body"
+              className="text-body-lg text-gray-600 font-body"
             >
               Founded with deep roots in telecommunications, CS2 Technologies has evolved into a 
               leading provider of AI-powered solutions, cloud infrastructure, and custom software 
@@ -94,13 +105,13 @@ const AboutOverview = () => {
               viewport={{ once: true }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Link href="/about">
+              <Link href="/about/">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
                   Learn More About Us
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="/contact/">
                 <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
                   Get In Touch
                 </Button>

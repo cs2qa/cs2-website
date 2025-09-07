@@ -121,7 +121,7 @@ const Expertise = () => {
   ]
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-primary/5 relative overflow-hidden">
+    <section className="py-16 px-4 bg-gradient-to-br from-gray-50 via-white to-primary/5 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full translate-y-32 -translate-x-32"></div>
@@ -265,13 +265,13 @@ const Expertise = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
+              <Link href="/contact/">
                 <Button className="bg-white text-primary hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3">
                   <CheckCircle className="mr-2 w-5 h-5" />
                   Start Your Project
                 </Button>
               </Link>
-              <Link href="/demo">
+              <Link href="/demo/">
                 <Button 
                   variant="outline" 
                   className="border-white text-white hover:bg-white hover:text-primary px-6 py-3"

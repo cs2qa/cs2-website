@@ -61,9 +61,8 @@ const ServicesSection = () => {
       link: "/services/telecom"
     }
   ]
-
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-display-sm font-display text-gray-900 mb-4">
@@ -114,7 +113,7 @@ const ServicesSection = () => {
 
         <div className="text-center">
           <div>
-            <Link href="/services">
+            <Link href="/services/">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
                 View All Services
                 <ArrowRight className="ml-2 w-5 h-5" />

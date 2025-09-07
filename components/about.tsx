@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { TrendingUp, Target, Users, Award } from 'lucide-react'
+import { TrendingUp, Target, Users, Award, Building2 } from 'lucide-react'
 
 const About = () => {
   const milestones = [
@@ -38,6 +38,10 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full text-primary font-medium mb-4 shadow-sm">
+            <Building2 className="w-4 h-4 mr-2" />
+            About CS2 Technologies
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Our Journey to AI Innovation
           </h2>

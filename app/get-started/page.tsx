@@ -379,13 +379,13 @@ export default function GetStarted() {
                 </Card>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/demo">
+                  <Link href="/demo/">
                     <Button size="lg" className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
                       Schedule Demo Now
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
-                  <Link href="/solutions">
+                  <Link href="/solutions/">
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 shadow-md hover:shadow-lg transition-all duration-300">
                       Explore More Solutions
                     </Button>

@@ -15,7 +15,8 @@ import {
   Building,
   Package,
   TrendingUp,
-  Globe
+  Globe,
+  Box
 } from 'lucide-react'
 
 const Products = () => {
@@ -23,6 +24,10 @@ const Products = () => {
     <section className="py-12 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full text-primary font-medium mb-4 shadow-sm">
+            <Box className="w-4 h-4 mr-2" />
+            Our Products
+          </div>
           <h2 className="text-display-sm font-display text-gray-900 mb-6">
             Our Flagship Products
           </h2>
@@ -89,13 +94,13 @@ const Products = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/demo">
+                  <Link href="/demo/">
                     <Button size="lg" className="bg-red-500 hover:bg-red-600 text-white">
                       Schedule CS2 Health Demo
                       <Heart className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
-                  <Link href="/contact">
+                  <Link href="/contact/">
                     <Button size="lg" variant="outline" className="border-red-500 text-red-500 hover:bg-red-50">
                       Learn More
                     </Button>
@@ -205,13 +210,13 @@ const Products = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/demo">
+                  <Link href="/demo/">
                     <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white">
                       Schedule Commerce Demo
                       <ShoppingCart className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
-                  <Link href="/contact">
+                  <Link href="/contact/">
                     <Button size="lg" variant="outline" className="border-green-500 text-green-500 hover:bg-green-50">
                       Learn More
                     </Button>
@@ -256,7 +261,7 @@ const Products = () => {
                 </div>
               </div>
               
-              <Link href="/demo" className="block">
+              <Link href="/demo/" className="block">
                 <Button className="w-full bg-red-500 hover:bg-red-600 text-white">
                   Get Started with CS2 Health
                 </Button>
@@ -289,7 +294,7 @@ const Products = () => {
                 </div>
               </div>
               
-              <Link href="/demo" className="block">
+              <Link href="/demo/" className="block">
                 <Button className="w-full bg-green-500 hover:bg-green-600 text-white">
                   Get Started with B2B Commerce
                 </Button>
@@ -309,13 +314,13 @@ const Products = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/demo">
+            <Link href="/demo/">
               <Button size="lg" className="bg-white text-primary hover:bg-gray-100 shadow-lg">
                 Schedule a Demo
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link href="/contact">
+            <Link href="/contact/">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
                 Contact Sales
               </Button>

@@ -7,15 +7,14 @@ import { ArrowRight, Brain, Cloud, Sparkles } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section className="min-h-screen pt-28 px-4 bg-gradient-to-b from-gray-50 to-white">
+    <section className="pt-20 pb-20 px-4 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto text-center">
         <div>
-          <div className="flex justify-center items-center mb-6 space-x-2">
+          <div className="flex justify-center items-center mb-6 space-x-3">
             <Brain className="w-6 h-6 text-primary" />
             <span className="text-body-sm font-medium text-gray-600 tracking-wide uppercase">Leading Innovation in AI</span>
             <Sparkles className="w-6 h-6 text-primary" />
           </div>
-          
           <h1 className="text-display-lg md:text-display-lg font-display text-gray-900 mb-6 leading-none">
             Transforming Business with
             <span className="text-gradient block mt-2">Intelligent Solutions</span>
@@ -28,13 +27,13 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link href="/solutions">
+            <Link href="/solutions/">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
                 Explore Our Solutions
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link href="/demo">
+            <Link href="/demo/">
               <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
                 Schedule Demo
               </Button>
