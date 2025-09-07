@@ -1,3 +1,11 @@
+resource "aws_cloudfront_function" "url_rewrite" {
+  name    = "${var.project_name}-url-rewrite"
+  runtime = "cloudfront-js-1.0"
+  comment = "URL rewrite function for Next.js static export"
+  publish = true
+  code    = file("${path.module}/cloudfront-function.js")
+}
+
 resource "aws_cloudfront_origin_access_control" "website" {
   name                              = "${var.project_name}-oac"
   description                       = "OAC for ${var.project_name} website"
@@ -31,6 +39,11 @@ resource "aws_cloudfront_distribution" "website" {
       cookies {
         forward = "none"
       }
+    }
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.url_rewrite.arn
     }
 
     viewer_protocol_policy = "redirect-to-https"
@@ -84,12 +97,14 @@ resource "aws_cloudfront_distribution" "website" {
     error_code         = 404
     response_code      = 404
     response_page_path = "/404.html"
+    error_caching_min_ttl = 10
   }
 
   custom_error_response {
     error_code         = 403
     response_code      = 404
     response_page_path = "/404.html"
+    error_caching_min_ttl = 10
   }
 
   viewer_certificate {
