@@ -27,3 +27,15 @@ variable "project_name" {
   type        = string
   default     = "cs2technologies"
 }
+
+variable "contact_email" {
+  description = "Email address to receive contact form submissions"
+  type        = string
+  default     = "info@cs2technologies.ca"
+}
+
+variable "domain_name" {
+  description = "Primary domain name"
+  type        = string
+  default     = "cs2technologies.com"
+}

@@ -47,24 +47,48 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setIsSubmitting(false)
-    setSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        subject: '',
-        message: ''
+    try {
+      // Get API URL from environment or use placeholder
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'YOUR_API_GATEWAY_URL_HERE'
+      
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
       })
-    }, 3000)
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result = await response.json()
+      console.log('Form submitted successfully:', result)
+      
+      setIsSubmitting(false)
+      setSubmitted(true)
+      
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setSubmitted(false)
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          subject: '',
+          message: ''
+        })
+        setConsent(false)
+      }, 5000)
+      
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setIsSubmitting(false)
+      // You could add error state handling here
+      alert('Failed to send message. Please try again or contact us directly.')
+    }
   }
 
   const contactInfo = [

@@ -24,6 +24,18 @@ import {
 export default function GetStarted() {
   const [selectedSolution, setSelectedSolution] = useState<string | null>(null)
   const [currentStep, setCurrentStep] = useState(1)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    companySize: '',
+    challenges: '',
+    timeline: '',
+    budget: ''
+  })
 
   const solutions = [
     {
@@ -74,9 +86,79 @@ export default function GetStarted() {
     { number: 3, title: 'Get Your Quote', description: 'Receive a customized proposal and timeline' }
   ]
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
   const handleSolutionSelect = (solutionId: string) => {
     setSelectedSolution(solutionId)
     setCurrentStep(2)
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      const selectedSol = solutions.find(s => s.id === selectedSolution)
+      
+      // Get API URL from environment or use placeholder
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'YOUR_API_GATEWAY_URL_HERE'
+      
+      const emailData = {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        subject: `Quote Request - ${selectedSol?.title}`,
+        message: `Quote Request Details:
+
+Selected Solution: ${selectedSol?.title}
+Company: ${formData.company}
+Company Size: ${formData.companySize || 'Not specified'}
+Phone: ${formData.phone || 'Not provided'}
+
+Current Challenges:
+${formData.challenges || 'Not specified'}
+
+Timeline: ${formData.timeline || 'Not specified'}
+Budget Range: ${formData.budget || 'Not specified'}
+
+Solution Details:
+${selectedSol?.description}
+Features: ${selectedSol?.features.join(', ')}
+Pricing: ${selectedSol?.pricing}
+Implementation Timeline: ${selectedSol?.timeline}
+Best For: ${selectedSol?.bestFor}
+        `
+      }
+      
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData)
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result = await response.json()
+      console.log('Quote request submitted successfully:', result)
+      
+      setCurrentStep(3)
+      
+    } catch (error) {
+      console.error('Error submitting quote request:', error)
+      alert('Failed to submit quote request. Please try again or contact us directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const selectedSolutionData = solutions.find(s => s.id === selectedSolution)
@@ -220,13 +302,16 @@ export default function GetStarted() {
 
                 <Card>
                   <CardContent className="p-8">
-                    <form className="space-y-6">
+                    <form onSubmit={handleFormSubmit} className="space-y-6">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label className="block text-sm font-medium mb-2">First Name *</label>
                           <input
                             type="text"
+                            name="firstName"
                             required
+                            value={formData.firstName}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                           />
                         </div>
@@ -234,7 +319,10 @@ export default function GetStarted() {
                           <label className="block text-sm font-medium mb-2">Last Name *</label>
                           <input
                             type="text"
+                            name="lastName"
                             required
+                            value={formData.lastName}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                           />
                         </div>
@@ -245,7 +333,10 @@ export default function GetStarted() {
                           <label className="block text-sm font-medium mb-2">Email *</label>
                           <input
                             type="email"
+                            name="email"
                             required
+                            value={formData.email}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                           />
                         </div>
@@ -253,6 +344,9 @@ export default function GetStarted() {
                           <label className="block text-sm font-medium mb-2">Phone</label>
                           <input
                             type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                           />
                         </div>
@@ -263,13 +357,21 @@ export default function GetStarted() {
                           <label className="block text-sm font-medium mb-2">Company *</label>
                           <input
                             type="text"
+                            name="company"
                             required
+                            value={formData.company}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                           />
                         </div>
                         <div>
                           <label className="block text-sm font-medium mb-2">Company Size</label>
-                          <select className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                          <select 
+                            name="companySize"
+                            value={formData.companySize}
+                            onChange={handleInputChange}
+                            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                          >
                             <option value="">Select size</option>
                             <option value="1-10">1-10 employees</option>
                             <option value="11-50">11-50 employees</option>
@@ -284,6 +386,9 @@ export default function GetStarted() {
                         <label className="block text-sm font-medium mb-2">Current Challenges</label>
                         <textarea
                           rows={3}
+                          name="challenges"
+                          value={formData.challenges}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                           placeholder="What challenges are you hoping to solve with AI?"
                         />
@@ -291,7 +396,12 @@ export default function GetStarted() {
 
                       <div>
                         <label className="block text-sm font-medium mb-2">Timeline</label>
-                        <select className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select 
+                          name="timeline"
+                          value={formData.timeline}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
                           <option value="">When do you need this implemented?</option>
                           <option value="asap">ASAP</option>
                           <option value="1-month">Within 1 month</option>
@@ -303,7 +413,12 @@ export default function GetStarted() {
 
                       <div>
                         <label className="block text-sm font-medium mb-2">Budget Range (Optional)</label>
-                        <select className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select 
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
                           <option value="">Select budget range</option>
                           <option value="under-5k">Under $5,000</option>
                           <option value="5k-15k">$5,000 - $15,000</option>
@@ -315,15 +430,12 @@ export default function GetStarted() {
 
                       <Button 
                         type="submit" 
-                        disabled
-                        className="w-full bg-gray-300 text-gray-500 cursor-not-allowed shadow-md"
+                        disabled={isSubmitting}
+                        className="w-full bg-primary hover:bg-primary/90 text-white shadow-md"
                       >
-                        Get My Custom Quote (Coming Soon)
+                        {isSubmitting ? 'Submitting...' : 'Get My Custom Quote'}
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
-                      <p className="text-center text-sm text-gray-600 mt-3">
-                        Please email us at info@cs2technologies.ca or call +1 905 749 5338 for a custom quote
-                      </p>
                     </form>
                   </CardContent>
                 </Card>

@@ -30,6 +30,16 @@ export default function ScheduleDemo() {
   const [selectedDemo, setSelectedDemo] = useState('')
   const [selectedTime, setSelectedTime] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    jobTitle: '',
+    additionalInfo: ''
+  })
 
   const demoTypes = [
     {
@@ -92,9 +102,69 @@ export default function ScheduleDemo() {
     { id: 'evening', label: 'Evening (6:00 PM - 8:00 PM)', available: true }
   ]
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setFormSubmitted(true)
+    setIsSubmitting(true)
+    
+    try {
+      const demoType = demoTypes.find(demo => demo.id === selectedDemo)
+      const timeSlot = timeSlots.find(slot => slot.id === selectedTime)
+      
+      // Get API URL from environment or use placeholder
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'YOUR_API_GATEWAY_URL_HERE'
+      
+      const emailData = {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        subject: `Demo Request - ${demoType?.title}`,
+        message: `Demo Request Details:
+
+Demo Type: ${demoType?.title} (${demoType?.duration})
+Preferred Time: ${timeSlot?.label}
+Job Title: ${formData.jobTitle || 'Not provided'}
+Company: ${formData.company}
+Phone: ${formData.phone}
+
+Additional Information:
+${formData.additionalInfo || 'None provided'}
+
+Demo Features Requested:
+${demoType?.features.map(feature => `• ${feature}`).join('\n')}
+        `
+      }
+      
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData)
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result = await response.json()
+      console.log('Demo request submitted successfully:', result)
+      
+      setFormSubmitted(true)
+      
+    } catch (error) {
+      console.error('Error submitting demo request:', error)
+      alert('Failed to submit demo request. Please try again or contact us directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (formSubmitted) {
@@ -311,7 +381,10 @@ export default function ScheduleDemo() {
                         <label className="block text-sm font-medium mb-2">First Name *</label>
                         <input
                           type="text"
+                          name="firstName"
                           required
+                          value={formData.firstName}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                       </div>
@@ -319,7 +392,10 @@ export default function ScheduleDemo() {
                         <label className="block text-sm font-medium mb-2">Last Name *</label>
                         <input
                           type="text"
+                          name="lastName"
                           required
+                          value={formData.lastName}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                       </div>
@@ -330,7 +406,10 @@ export default function ScheduleDemo() {
                         <label className="block text-sm font-medium mb-2">Email *</label>
                         <input
                           type="email"
+                          name="email"
                           required
+                          value={formData.email}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                       </div>
@@ -338,7 +417,10 @@ export default function ScheduleDemo() {
                         <label className="block text-sm font-medium mb-2">Phone *</label>
                         <input
                           type="tel"
+                          name="phone"
                           required
+                          value={formData.phone}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                       </div>
@@ -349,7 +431,10 @@ export default function ScheduleDemo() {
                         <label className="block text-sm font-medium mb-2">Company *</label>
                         <input
                           type="text"
+                          name="company"
                           required
+                          value={formData.company}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                       </div>
@@ -357,6 +442,9 @@ export default function ScheduleDemo() {
                         <label className="block text-sm font-medium mb-2">Job Title</label>
                         <input
                           type="text"
+                          name="jobTitle"
+                          value={formData.jobTitle}
+                          onChange={handleInputChange}
                           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                       </div>
@@ -403,6 +491,9 @@ export default function ScheduleDemo() {
                       </label>
                       <textarea
                         rows={3}
+                        name="additionalInfo"
+                        value={formData.additionalInfo}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                         placeholder="e.g., integration with our current system, specific use cases, ROI calculations..."
                       />
@@ -411,11 +502,17 @@ export default function ScheduleDemo() {
                     <Button 
                       type="submit" 
                       className="w-full bg-primary hover:bg-primary/90"
-                      disabled={!selectedDemo || !selectedTime}
+                      disabled={!selectedDemo || !selectedTime || !formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.company || isSubmitting}
                     >
-                      Schedule My Demo
+                      {isSubmitting ? 'Scheduling...' : 'Schedule My Demo'}
                       <Calendar className="ml-2 w-4 h-4" />
                     </Button>
+
+                    {(!selectedDemo || !selectedTime || !formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.company) && (
+                      <p className="text-center text-sm text-gray-500 mt-2">
+                        Please complete all required fields and selections above
+                      </p>
+                    )}
                   </form>
                 </CardContent>
               </Card>
