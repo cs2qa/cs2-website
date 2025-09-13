@@ -8,12 +8,26 @@ set -e
 echo "☁️  CS2 Technologies CloudFront Setup Script"
 echo "==========================================="
 
+# Get the script directory and project root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Change to project root directory
+cd "$PROJECT_ROOT"
+
 # Load configuration
-CONFIG_FILE="aws-config.json"
-BUCKET_NAME=$(jq -r '.s3.bucketName' $CONFIG_FILE)
-REGION=$(jq -r '.s3.region' $CONFIG_FILE)
-DOMAIN_NAME=$(jq -r '.domain.domainName' $CONFIG_FILE)
-CERTIFICATE_ARN=$(jq -r '.domain.certificateArn' $CONFIG_FILE)
+CONFIG_FILE="$PROJECT_ROOT/aws-config.json"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "❌ Configuration file not found: $CONFIG_FILE"
+    echo "   Please ensure aws-config.json exists in the project root."
+    exit 1
+fi
+
+BUCKET_NAME=$(jq -r '.s3.bucketName' "$CONFIG_FILE")
+REGION=$(jq -r '.s3.region' "$CONFIG_FILE")
+DOMAIN_NAME=$(jq -r '.domain.domainName' "$CONFIG_FILE")
+CERTIFICATE_ARN=$(jq -r '.domain.certificateArn' "$CONFIG_FILE")
 
 # Check if distribution already exists
 echo "🔍 Checking for existing CloudFront distribution..."

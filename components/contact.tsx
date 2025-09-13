@@ -106,15 +106,21 @@ const Contact = () => {
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: "Location",
-      content: "Toronto, Canada",
+      title: "Toronto Office",
+      content: "2424 Finch Ave W, Unit 14, Toronto ON M9M 2E2, Canada",
+      link: "#"
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Milton Office",
+      content: "752 Apple Terrace, L9E 2C3 Milton, Ontario, Canada",
       link: "#"
     },
     {
       icon: <Globe className="w-6 h-6" />,
-      title: "Website",
-      content: "www.cs2technologies.ca",
-      link: "https://www.cs2technologies.ca"
+      title: "Websites",
+      content: "www.cs2technologies.ca | www.cs2technologies.com",
+      link: "https://www.cs2technologies.com"
     }
   ]
 

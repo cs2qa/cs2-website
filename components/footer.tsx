@@ -52,6 +52,10 @@ const Footer = () => {
               Transforming businesses with intelligent AI solutions. 
               From telecommunications expertise to healthcare innovation.
             </p>
+            <p className="text-gray-400 text-sm mb-4">
+              2424 Finch Ave W, Unit 14<br />
+              Toronto ON M9M 2E2, Canada
+            </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <a

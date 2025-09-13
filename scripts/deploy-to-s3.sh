@@ -8,10 +8,21 @@ set -e
 echo "🚀 CS2 Technologies Website Deployment Script"
 echo "============================================"
 
+# Get the script directory and project root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 # Load configuration
-CONFIG_FILE="aws-config.json"
-BUCKET_NAME=$(jq -r '.s3.bucketName' $CONFIG_FILE)
-REGION=$(jq -r '.s3.region' $CONFIG_FILE)
+CONFIG_FILE="$PROJECT_ROOT/aws-config.json"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "❌ Configuration file not found: $CONFIG_FILE"
+    echo "   Please ensure aws-config.json exists in the project root."
+    exit 1
+fi
+
+BUCKET_NAME=$(jq -r '.s3.bucketName' "$CONFIG_FILE")
+REGION=$(jq -r '.s3.region' "$CONFIG_FILE")
 
 # Check if AWS CLI is installed
 if ! command -v aws &> /dev/null; then
@@ -26,9 +37,12 @@ if ! aws sts get-caller-identity &> /dev/null; then
     exit 1
 fi
 
+# Change to project root directory
+cd "$PROJECT_ROOT"
+
 # Build the Next.js application
 echo "🔨 Building Next.js application..."
-yarn build
+npm run build
 
 # Check if out directory exists
 if [ ! -d "out" ]; then
@@ -38,9 +52,7 @@ fi
 
 # Create S3 bucket if it doesn't exist
 echo "🪣 Checking S3 bucket..."
-if ! aws s3 ls "s3://${BUCKET_NAME}" --region "${REGION}" 2>&1 | grep -q 'NoSuchBucket'; then
-    echo "✅ Bucket ${BUCKET_NAME} exists"
-else
+if aws s3 ls "s3://${BUCKET_NAME}" --region "${REGION}" 2>&1 | grep -q 'NoSuchBucket'; then
     echo "📦 Creating bucket ${BUCKET_NAME}..."
     aws s3 mb "s3://${BUCKET_NAME}" --region "${REGION}"
     
@@ -49,6 +61,13 @@ else
     aws s3 website "s3://${BUCKET_NAME}" \
         --index-document index.html \
         --error-document 404.html \
+        --region "${REGION}"
+    
+    # Disable block public access
+    echo "🔓 Disabling block public access..."
+    aws s3api put-public-access-block \
+        --bucket "${BUCKET_NAME}" \
+        --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false" \
         --region "${REGION}"
     
     # Set bucket policy for public access
@@ -71,6 +90,8 @@ EOF
         --bucket "${BUCKET_NAME}" \
         --policy file:///tmp/bucket-policy.json \
         --region "${REGION}"
+else
+    echo "✅ Bucket ${BUCKET_NAME} exists"
 fi
 
 # Sync files to S3
