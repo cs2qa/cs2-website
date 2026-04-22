@@ -40,3 +40,9 @@ next-env.d.ts
 aws-config-prod.json
 /.idea/
 /terraform/lambda/contact-form/node_modules/
+
+# Proposal generator
+/scripts/proposals/out/
+/scripts/proposals/__pycache__/
+/scripts/proposals/**/__pycache__/
+/scripts/proposals/.pytest_cache/
