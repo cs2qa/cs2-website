@@ -153,7 +153,7 @@ const PORTFOLIO = [
       'Canadian furniture importer — wholesale credibility site with category-driven quote flow.',
   },
   {
-    name: 'NotermMed',
+    name: 'Notermed',
     slug: 'notermed',
     url: 'https://www.notermed.com/',
     description:

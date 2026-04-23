@@ -23,6 +23,23 @@ const RATE_LIMITS = {
   global: { count: 100, windowMinutes: 60 }     // 100 total emails per hour
 };
 
+function escapeHtml(str) {
+  if (str === undefined || str === null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function safeHttpUrl(url) {
+  if (!url) return '#';
+  const trimmed = String(url).trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return '#';
+}
+
 exports.handler = async (event) => {
   console.log('Received event:', JSON.stringify(event));
   
@@ -83,6 +100,7 @@ exports.handler = async (event) => {
 
     // Validate email format
     if (!isValidEmail(email)) {
+      // Note: improved from "Invalid email format" during audit form extension — matches user-friendly error convention.
       return {
         statusCode: 400,
         headers: getCorsHeaders(event.headers.origin),
@@ -294,27 +312,27 @@ function formatHtmlEmail(name, email, company, phone, subject, message) {
     <div class="content">
       <div class="field">
         <span class="label">From:</span>
-        <span class="value">${name}</span>
+        <span class="value">${escapeHtml(name)}</span>
       </div>
       <div class="field">
         <span class="label">Email:</span>
-        <span class="value"><a href="mailto:${email}">${email}</a></span>
+        <span class="value"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></span>
       </div>
       <div class="field">
         <span class="label">Company:</span>
-        <span class="value">${company || 'Not provided'}</span>
+        <span class="value">${company ? escapeHtml(company) : 'Not provided'}</span>
       </div>
       <div class="field">
         <span class="label">Phone:</span>
-        <span class="value">${phone || 'Not provided'}</span>
+        <span class="value">${phone ? escapeHtml(phone) : 'Not provided'}</span>
       </div>
       <div class="field">
         <span class="label">Subject:</span>
-        <span class="value">${subject}</span>
+        <span class="value">${escapeHtml(subject)}</span>
       </div>
       <div class="message-box">
         <div class="label">Message:</div>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
       </div>
     </div>
   </div>
@@ -342,7 +360,7 @@ function formatAutoReplyEmail(name) {
       <h1>Thank You for Contacting CS2 Technologies</h1>
     </div>
     <div class="content">
-      <p>Dear ${name},</p>
+      <p>Dear ${escapeHtml(name)},</p>
       <p>Thank you for reaching out to CS2 Technologies. We have received your message and appreciate your interest in our services.</p>
       <p>Our team will review your inquiry and get back to you within 24 business hours.</p>
       <p>In the meantime, feel free to explore our website for more information about our AI solutions, healthcare technology, and enterprise services.</p>
@@ -405,35 +423,35 @@ function formatAuditHtmlEmail(name, email, company, phone, businessUrl, industry
     <div class="content">
       <div class="field">
         <span class="label">From:</span>
-        <span class="value">${name}</span>
+        <span class="value">${escapeHtml(name)}</span>
       </div>
       <div class="field">
         <span class="label">Email:</span>
-        <span class="value"><a href="mailto:${email}">${email}</a></span>
+        <span class="value"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></span>
       </div>
       <div class="field">
         <span class="label">Business name:</span>
-        <span class="value">${company || 'Not provided'}</span>
+        <span class="value">${company ? escapeHtml(company) : 'Not provided'}</span>
       </div>
       <div class="field">
         <span class="label">Phone:</span>
-        <span class="value">${phone || 'Not provided'}</span>
+        <span class="value">${phone ? escapeHtml(phone) : 'Not provided'}</span>
       </div>
       <div class="field">
         <span class="label">Business URL:</span>
-        <span class="value"><a href="${businessUrl}" target="_blank" rel="noopener">${businessUrl}</a></span>
+        <span class="value"><a href="${escapeHtml(safeHttpUrl(businessUrl))}" target="_blank" rel="noopener">${escapeHtml(businessUrl)}</a></span>
       </div>
       <div class="field">
         <span class="label">Industry:</span>
-        <span class="value">${industry}</span>
+        <span class="value">${escapeHtml(industry)}</span>
       </div>
       <div class="field">
         <span class="label">Current Google Ads spend:</span>
-        <span class="value">${adSpendMonthly || 'Not provided'}</span>
+        <span class="value">${adSpendMonthly ? escapeHtml(adSpendMonthly) : 'Not provided'}</span>
       </div>
       <div class="message-box">
         <div class="label">What's broken / what they want to solve:</div>
-        <p>${String(whatIssue).replace(/\n/g, '<br>')}</p>
+        <p>${escapeHtml(whatIssue).replace(/\n/g, '<br>')}</p>
       </div>
     </div>
   </div>
@@ -462,7 +480,7 @@ function formatAuditAutoReplyEmail(name) {
       <h1>Your Free CS2 Audit Request — Received</h1>
     </div>
     <div class="content">
-      <p>Dear ${name},</p>
+      <p>Dear ${escapeHtml(name)},</p>
       <p>Thanks for requesting a free audit. We'll review your Google Ads + website and email you a 4-page diagnostic within 2 business days.</p>
       <p>No sales pitch, just findings — what's working, what's leaking revenue, and the top 3 changes that would move the needle.</p>
       <p class="signature">— Qasim<br>CS2 Technologies</p>

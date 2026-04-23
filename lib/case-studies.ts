@@ -74,19 +74,19 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'gws-connect',
-    clientName: 'GWS Connect 24',
+    clientName: 'GWS Connect',
     industry: 'B2B wholesale',
     tagline:
       'A member-gated wholesale brokerage with buyer / supplier portals, deal listings, and escrow-style transaction flow.',
     liveSiteUrl: 'https://www.gwsconnect24.com/',
     heroBlurb:
-      'GWS Connect 24 is a wholesale brokerage connecting retailers, marketplace sellers, and manufacturers with verified suppliers of closeout and overstock inventory. CS2 built the public-facing site and the membership application layer — buyer and supplier authentication, deal feeds, demo-booking flows, and content structure that supports a managed-transaction business model.',
+      'GWS Connect is a wholesale brokerage connecting retailers, marketplace sellers, and manufacturers with verified suppliers of closeout and overstock inventory. CS2 built the public-facing site and the membership application layer — buyer and supplier authentication, deal feeds, demo-booking flows, and content structure that supports a managed-transaction business model.',
     challenge:
-      'GWS Connect 24 is not a storefront — it is a gated marketplace. Prospects have to be qualified before they see pricing or inventory, suppliers need a different onboarding path than buyers, and every flow has to reinforce trust (escrow, verification, managed logistics) because closeout wholesale is a trust-heavy category. A generic template couldn\'t handle two audiences, two login paths, and a demo-book-apply conversion funnel on the same marketing site.',
+      'GWS Connect is not a storefront — it is a gated marketplace. Prospects have to be qualified before they see pricing or inventory, suppliers need a different onboarding path than buyers, and every flow has to reinforce trust (escrow, verification, managed logistics) because closeout wholesale is a trust-heavy category. A generic template couldn\'t handle two audiences, two login paths, and a demo-book-apply conversion funnel on the same marketing site.',
     solution:
       'CS2 delivered a custom Next.js site with separate buyer and supplier login portals, an "Apply Now" + "Book a Demo" dual-CTA pattern, a /deals feed for gated inventory browsing, and a newsletter capture for prospects not ready to apply. The information architecture walks cold traffic through solutions, how-it-works, and FAQs before asking for the application — appropriate for a high-consideration B2B offer. The whole site is statically exported and served from AWS S3 + CloudFront, so page speed stays fast globally despite the content weight.',
     outcome:
-      'GWS Connect 24 now has a credibility-first public site that qualifies prospects before the sales team ever sees them. Buyer and supplier paths are segmented from the first click, and the site is fast enough to support paid acquisition without Core Web Vitals penalties. [TODO: qualified-application volume / month — Qasim to supply]. [TODO: buyer ↔ supplier split of inbound — Qasim to supply].',
+      'GWS Connect now has a credibility-first public site that qualifies prospects before the sales team ever sees them. Buyer and supplier paths are segmented from the first click, and the site is fast enough to support paid acquisition without Core Web Vitals penalties. [TODO: qualified-application volume / month — Qasim to supply]. [TODO: buyer ↔ supplier split of inbound — Qasim to supply].',
     techStack: [
       'Next.js (static export)',
       'React',
