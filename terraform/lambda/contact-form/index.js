@@ -38,41 +38,70 @@ exports.handler = async (event) => {
   try {
     // Get client IP
     const clientIP = event.requestContext?.identity?.sourceIp || 'unknown';
-    
+
     // Parse request body
     const body = JSON.parse(event.body);
-    const { name, email, company, phone, subject, message } = body;
-    
-    // Validate required fields
-    if (!name || !email || !subject || !message) {
-      return {
-        statusCode: 400,
-        headers: getCorsHeaders(event.headers.origin),
-        body: JSON.stringify({ 
-          error: 'Missing required fields: name, email, subject, and message are required' 
-        })
-      };
+    const {
+      name,
+      email,
+      company,
+      phone,
+      subject,
+      message,
+      // Audit-specific fields (optional)
+      requestType,
+      businessUrl,
+      industry,
+      adSpendMonthly,
+      whatIssue
+    } = body;
+
+    const isAudit = requestType === 'audit';
+
+    // Validate required fields (branch on request type)
+    if (isAudit) {
+      if (!name || !email || !businessUrl || !industry || !whatIssue) {
+        return {
+          statusCode: 400,
+          headers: getCorsHeaders(event.headers.origin),
+          body: JSON.stringify({
+            error: 'Missing required fields: name, email, businessUrl, industry, and whatIssue are required for an audit request'
+          })
+        };
+      }
+    } else {
+      if (!name || !email || !subject || !message) {
+        return {
+          statusCode: 400,
+          headers: getCorsHeaders(event.headers.origin),
+          body: JSON.stringify({
+            error: 'Missing required fields: name, email, subject, and message are required'
+          })
+        };
+      }
     }
-    
+
     // Validate email format
     if (!isValidEmail(email)) {
       return {
         statusCode: 400,
         headers: getCorsHeaders(event.headers.origin),
-        body: JSON.stringify({ error: 'Invalid email format' })
+        body: JSON.stringify({ error: 'Please provide a valid email' })
       };
     }
-    
-    // Spam detection
-    if (isSpam(name, email, subject, message)) {
-      console.log('Spam detected:', { clientIP, email, subject });
+
+    // Spam detection — for audits, substitute whatIssue for message and a generated subject.
+    const spamSubject = isAudit ? `Audit request: ${businessUrl || name}` : subject;
+    const spamMessage = isAudit ? whatIssue : message;
+    if (isSpam(name, email, spamSubject, spamMessage)) {
+      console.log('Spam detected:', { clientIP, email, subject: spamSubject, isAudit });
       return {
         statusCode: 429,
         headers: getCorsHeaders(event.headers.origin),
         body: JSON.stringify({ error: 'Message appears to be spam' })
       };
     }
-    
+
     // Rate limiting check
     const rateLimitResult = await checkRateLimit(clientIP, email);
     if (!rateLimitResult.allowed) {
@@ -80,64 +109,99 @@ exports.handler = async (event) => {
       return {
         statusCode: 429,
         headers: getCorsHeaders(event.headers.origin),
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           error: 'Too many requests. Please try again later.',
-          retryAfter: rateLimitResult.retryAfter 
+          retryAfter: rateLimitResult.retryAfter
         })
       };
     }
-    
-    // Prepare email parameters
-    const emailParams = {
-      Source: SENDER_EMAIL,
-      Destination: {
-        ToAddresses: [RECIPIENT_EMAIL]
-      },
-      Message: {
-        Subject: {
-          Data: `[CS2 Website] ${subject}`,
-          Charset: 'UTF-8'
-        },
-        Body: {
-          Text: {
-            Data: formatTextEmail(name, email, company, phone, subject, message),
-            Charset: 'UTF-8'
+
+    // Prepare email parameters (branch formatters and subject on request type)
+    const emailParams = isAudit
+      ? {
+          Source: SENDER_EMAIL,
+          Destination: { ToAddresses: [RECIPIENT_EMAIL] },
+          Message: {
+            Subject: {
+              Data: `[CS2 Audit Request] ${businessUrl || name}`,
+              Charset: 'UTF-8'
+            },
+            Body: {
+              Text: {
+                Data: formatAuditTextEmail(name, email, company, phone, businessUrl, industry, adSpendMonthly, whatIssue),
+                Charset: 'UTF-8'
+              },
+              Html: {
+                Data: formatAuditHtmlEmail(name, email, company, phone, businessUrl, industry, adSpendMonthly, whatIssue),
+                Charset: 'UTF-8'
+              }
+            }
           },
-          Html: {
-            Data: formatHtmlEmail(name, email, company, phone, subject, message),
-            Charset: 'UTF-8'
-          }
+          ReplyToAddresses: [email]
         }
-      },
-      ReplyToAddresses: [email]
-    };
-    
+      : {
+          Source: SENDER_EMAIL,
+          Destination: { ToAddresses: [RECIPIENT_EMAIL] },
+          Message: {
+            Subject: {
+              Data: `[CS2 Website] ${subject}`,
+              Charset: 'UTF-8'
+            },
+            Body: {
+              Text: {
+                Data: formatTextEmail(name, email, company, phone, subject, message),
+                Charset: 'UTF-8'
+              },
+              Html: {
+                Data: formatHtmlEmail(name, email, company, phone, subject, message),
+                Charset: 'UTF-8'
+              }
+            }
+          },
+          ReplyToAddresses: [email]
+        };
+
     // Send email via SES
     const sendEmailCommand = new SendEmailCommand(emailParams);
     const result = await sesClient.send(sendEmailCommand);
     console.log('Email sent successfully:', result.MessageId);
-    
+
     // Try to send auto-reply to user (may fail in SES sandbox mode)
     try {
-      const autoReplyParams = {
-        Source: SENDER_EMAIL,
-        Destination: {
-          ToAddresses: [email]
-        },
-        Message: {
-          Subject: {
-            Data: 'Thank you for contacting CS2 Technologies',
-            Charset: 'UTF-8'
-          },
-          Body: {
-            Html: {
-              Data: formatAutoReplyEmail(name),
-              Charset: 'UTF-8'
+      const autoReplyParams = isAudit
+        ? {
+            Source: SENDER_EMAIL,
+            Destination: { ToAddresses: [email] },
+            Message: {
+              Subject: {
+                Data: 'Your free CS2 audit request — received',
+                Charset: 'UTF-8'
+              },
+              Body: {
+                Html: {
+                  Data: formatAuditAutoReplyEmail(name),
+                  Charset: 'UTF-8'
+                }
+              }
             }
           }
-        }
-      };
-      
+        : {
+            Source: SENDER_EMAIL,
+            Destination: { ToAddresses: [email] },
+            Message: {
+              Subject: {
+                Data: 'Thank you for contacting CS2 Technologies',
+                Charset: 'UTF-8'
+              },
+              Body: {
+                Html: {
+                  Data: formatAutoReplyEmail(name),
+                  Charset: 'UTF-8'
+                }
+              }
+            }
+          };
+
       const autoReplyCommand = new SendEmailCommand(autoReplyParams);
       await sesClient.send(autoReplyCommand);
       console.log('Auto-reply sent successfully');
@@ -283,6 +347,125 @@ function formatAutoReplyEmail(name) {
       <p>Our team will review your inquiry and get back to you within 24 business hours.</p>
       <p>In the meantime, feel free to explore our website for more information about our AI solutions, healthcare technology, and enterprise services.</p>
       <p>Best regards,<br>The CS2 Technologies Team</p>
+    </div>
+    <div class="footer">
+      <p>CS2 Technologies | Toronto, Canada<br>
+      <a href="https://cs2technologies.com">www.cs2technologies.com</a></p>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+// ---------- Audit-specific formatters ----------
+
+function formatAuditTextEmail(name, email, company, phone, businessUrl, industry, adSpendMonthly, whatIssue) {
+  return `
+New Free Audit Request
+
+From: ${name}
+Email: ${email}
+Business name: ${company || 'Not provided'}
+Phone: ${phone || 'Not provided'}
+Business URL: ${businessUrl}
+Industry: ${industry}
+Current Google Ads spend: ${adSpendMonthly || 'Not provided'}
+
+What's broken / what they want to solve:
+${whatIssue}
+
+---
+This email was sent from the CS2 Technologies free-audit request form.
+  `.trim();
+}
+
+function formatAuditHtmlEmail(name, email, company, phone, businessUrl, industry, adSpendMonthly, whatIssue) {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #ff2900 0%, #ff6b00 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+    .content { background: #f8f9fa; padding: 20px; border-radius: 0 0 8px 8px; }
+    .field { margin-bottom: 15px; }
+    .label { font-weight: bold; color: #555; }
+    .value { margin-left: 10px; color: #333; }
+    .message-box { background: white; padding: 15px; border-radius: 5px; margin-top: 15px; }
+    .badge { display: inline-block; background: #ff2900; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>New Free Audit Request <span class="badge">AUDIT</span></h2>
+    </div>
+    <div class="content">
+      <div class="field">
+        <span class="label">From:</span>
+        <span class="value">${name}</span>
+      </div>
+      <div class="field">
+        <span class="label">Email:</span>
+        <span class="value"><a href="mailto:${email}">${email}</a></span>
+      </div>
+      <div class="field">
+        <span class="label">Business name:</span>
+        <span class="value">${company || 'Not provided'}</span>
+      </div>
+      <div class="field">
+        <span class="label">Phone:</span>
+        <span class="value">${phone || 'Not provided'}</span>
+      </div>
+      <div class="field">
+        <span class="label">Business URL:</span>
+        <span class="value"><a href="${businessUrl}" target="_blank" rel="noopener">${businessUrl}</a></span>
+      </div>
+      <div class="field">
+        <span class="label">Industry:</span>
+        <span class="value">${industry}</span>
+      </div>
+      <div class="field">
+        <span class="label">Current Google Ads spend:</span>
+        <span class="value">${adSpendMonthly || 'Not provided'}</span>
+      </div>
+      <div class="message-box">
+        <div class="label">What's broken / what they want to solve:</div>
+        <p>${String(whatIssue).replace(/\n/g, '<br>')}</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+function formatAuditAutoReplyEmail(name) {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #ff2900 0%, #ff6b00 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+    .content { background: #ffffff; padding: 30px; border: 1px solid #e0e0e0; border-radius: 0 0 8px 8px; }
+    .footer { text-align: center; margin-top: 20px; color: #666; font-size: 14px; }
+    .signature { margin-top: 20px; color: #333; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Your Free CS2 Audit Request — Received</h1>
+    </div>
+    <div class="content">
+      <p>Dear ${name},</p>
+      <p>Thanks for requesting a free audit. We'll review your Google Ads + website and email you a 4-page diagnostic within 2 business days.</p>
+      <p>No sales pitch, just findings — what's working, what's leaking revenue, and the top 3 changes that would move the needle.</p>
+      <p class="signature">— Qasim<br>CS2 Technologies</p>
     </div>
     <div class="footer">
       <p>CS2 Technologies | Toronto, Canada<br>

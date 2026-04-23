@@ -1,0 +1,4 @@
+# CS2 Technologies — SMB Acquisition prospect tracker. Update this manually OR import into a CRM once volume exceeds ~200 prospects.
+# Boolean fields (email_N_sent / opened / replied, audit_requested): leave BLANK for "not yet", write Y for yes, write N for "no reply after 14 days".
+# All date fields use ISO format YYYY-MM-DD. deal_won_lost values: WON, LOST, OPEN. disqualified_reason: short free-text (e.g. "uses agency", "US-only", "no ad budget").
+prospect_company,prospect_name,role,email,phone,website,industry,city,tier_target,source,qualification_date,disqualified_reason,email_1_sent,email_1_opened,email_1_replied,email_2_sent,email_2_opened,email_2_replied,email_3_sent,email_3_opened,email_3_replied,email_4_sent,email_4_opened,email_4_replied,audit_requested,audit_delivered_date,call_booked_date,proposal_sent_date,deal_won_lost,notes

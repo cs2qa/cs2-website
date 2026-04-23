@@ -65,15 +65,6 @@ _FOUNDATION = {
         "amount": "CAD $5,800",
         "caveat": "Plus your own ad spend ($500–$1,500/mo typical). You can cancel after any phase.",
     },
-    "included_features": [
-        "Custom website build (4-week delivery guarantee)",
-        "Lead-capture forms + CRM sync",
-        "Google Ads account setup + managed campaigns",
-        "Hosting on AWS/Vercel (Canadian edge) + SSL + daily backups",
-        "Security patches + uptime monitoring",
-        "Monthly performance review call",
-        "30-day clean-export guarantee if you ever leave",
-    ],
     "customer_journey": [
         {"stage": "Sees your ad",
          "description": "High-intent search matches a tightly-themed ad group."},
@@ -85,13 +76,6 @@ _FOUNDATION = {
          "description": "Automated follow-up until they convert to paid."},
         {"stage": "Becomes a repeat customer",
          "description": "Reactivation emails + seasonal promos drive return visits."},
-    ],
-    "what_we_need": [
-        "Admin access to your Google Ads and Analytics accounts",
-        "Access to your domain registrar + current website host",
-        "Business information: hours, services, pricing, location photos",
-        "Your current CRM (or confirmation you'd like us to set one up)",
-        "A 30-minute kickoff call within the first week",
     ],
     "risks": [
         {"title": "Seasonality hides the signal.",
@@ -111,36 +95,24 @@ _FOUNDATION = {
         {"q": "What's included in the monthly retainer?",
          "a": "Hosting, SSL, backups, security patches, Google Ads management, CRM support, and monthly reporting. Domain and ad spend are billed separately by the respective providers."},
     ],
-    "why_cs2_bullets": [
-        "Canadian-owned, Toronto-based — real humans in your time zone.",
-        "AI-accelerated development: custom code at template speeds (4-week builds).",
-        "You own your site, your code, your domain, your data. No platform lock-in.",
-        "Portfolio: Majestik Group, Mint Imports, NotermMed, GWS Connect, Etobicoke VR Arena.",
-    ],
 }
 
 
 _GROWTH_STUB = {
     "phases": [],
     "total_investment": None,
-    "included_features": [],
     "customer_journey": [],
-    "what_we_need": [],
     "risks": [],
     "faq": [],
-    "why_cs2_bullets": _FOUNDATION["why_cs2_bullets"],
 }
 
 
 _SCALE_STUB = {
     "phases": [],
     "total_investment": None,
-    "included_features": [],
     "customer_journey": [],
-    "what_we_need": [],
     "risks": [],
     "faq": [],
-    "why_cs2_bullets": _FOUNDATION["why_cs2_bullets"],
 }
 
 

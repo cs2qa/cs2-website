@@ -49,7 +49,6 @@ These sections, when present, override the tier defaults from `tiers.py`. When o
 - `customer_journey` — 5-7 stage visual funnel
 - `risks` — risk/mitigation pairs
 - `faq` — Q/A pairs
-- `why_cs2_bullets` — closing "Why CS2" bullets
 
 These render empty-or-skipped when not provided (no tier default exists):
 
@@ -70,7 +69,7 @@ Tier drives the default phases, pricing, and fallback copy. Pick by client busin
 | `growth` | Bookings/subscriptions: VR arcades, gyms, salons, courses, events | $8,500 + $1,200/mo |
 | `scale` | E-commerce: retail, D2C, wholesale | $15,000 + $2,250/mo |
 
-**v1 only fully populates Foundation defaults.** Growth and Scale are stubbed in `tiers.py` with empty lists (except `why_cs2_bullets`, which is shared). If you pitch a Growth or Scale client in v1, you must populate `phases`, `total_investment`, `risks`, `faq`, and `customer_journey` directly in the client YAML — otherwise the generated PDF will have empty phase pages. The stubs will be filled in with real content the first time a real Growth/Scale client is pitched, so we don't write copy we might throw away.
+**v1 only fully populates Foundation defaults.** Growth and Scale are stubbed in `tiers.py` with empty lists. If you pitch a Growth or Scale client in v1, you must populate `phases`, `total_investment`, `risks`, `faq`, and `customer_journey` directly in the client YAML — otherwise the generated PDF will have empty phase pages. The stubs will be filled in with real content the first time a real Growth/Scale client is pitched, so we don't write copy we might throw away.
 
 ## Quality bar
 

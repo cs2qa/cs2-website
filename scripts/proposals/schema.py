@@ -8,7 +8,7 @@ from datetime import date
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class Tier(str, Enum):
@@ -189,6 +189,22 @@ class ROIPage(BaseModel):
     bet_title: str = "THE BET"
     bet_lines: List[str] = Field(..., min_length=1)
 
+    @model_validator(mode="after")
+    def _check_column_alignment(self) -> "ROIPage":
+        n_headers = len(self.column_headers)
+        if len(self.column_weights) != n_headers:
+            raise ValueError(
+                f"roi_page: column_weights must have the same length as column_headers "
+                f"(got {len(self.column_weights)} weights for {n_headers} headers)."
+            )
+        for i, row in enumerate(self.rows):
+            if len(row) != n_headers:
+                raise ValueError(
+                    f"roi_page: rows[{i}] has {len(row)} cells but column_headers has "
+                    f"{n_headers} columns — every row must match the header count."
+                )
+        return self
+
 
 class InvestmentItem(BaseModel):
     item: str
@@ -297,4 +313,3 @@ class Proposal(BaseModel):
     customer_journey: List[JourneyStage] = []
     risks: List[Risk] = []
     faq: List[FAQEntry] = []
-    why_cs2_bullets: List[str] = []

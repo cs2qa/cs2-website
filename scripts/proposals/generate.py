@@ -38,25 +38,19 @@ def _friendly_error(exc: ValidationError) -> str:
 def _merge_tier_defaults(proposal: Proposal) -> dict:
     """Merge tier defaults into the proposal dict for fields the YAML left empty.
 
-    List-typed optional fields (phases, customer_journey, risks, faq,
-    why_cs2_bullets) fall back to the tier default when the YAML list
-    is empty. total_investment falls back when None. Additional tier-
-    sourced fields not in the Proposal schema (included_features,
-    what_we_need) are always attached from the tier defaults so that
-    page renderers can read them.
+    List-typed optional fields (phases, customer_journey, risks, faq)
+    fall back to the tier default when the YAML list is empty.
+    total_investment falls back when None.
     """
     data = proposal.model_dump(mode="python")
     defaults = get_tier_defaults(proposal.proposal.tier)
 
-    for key in ("phases", "customer_journey", "risks", "faq", "why_cs2_bullets"):
+    for key in ("phases", "customer_journey", "risks", "faq"):
         if not data.get(key):
             data[key] = defaults.get(key, [])
 
     if data.get("total_investment") is None:
         data["total_investment"] = defaults.get("total_investment")
-
-    data["included_features"] = defaults.get("included_features", [])
-    data["what_we_need"] = defaults.get("what_we_need", [])
 
     return data
 
@@ -107,6 +101,19 @@ def main(argv=None) -> int:
         return 1
 
     merged = _merge_tier_defaults(proposal)
+
+    if merged.get("total_investment") is None:
+        tier_value = proposal.proposal.tier.value
+        print(
+            f"Error: The '{tier_value}' tier has no default total_investment in this "
+            f"version of the generator.\n"
+            f"Please set 'total_investment' in your client YAML:\n"
+            f"  total_investment:\n"
+            f"    amount: \"CAD $15,700\"\n"
+            f"    caveat: \"Plus your own ad spend ($...).\"",
+            file=sys.stderr,
+        )
+        return 1
 
     out_dir = Path(__file__).resolve().parent / "out"
     out_dir.mkdir(parents=True, exist_ok=True)
