@@ -37,6 +37,11 @@ export type CaseStudy = {
 /**
  * Case studies for the five live CS2 client sites.
  *
+ * Order is best-first by visual impression + SMB relatability.
+ * First three span three different industries (entertainment, SaaS,
+ * luxury retail) for maximum variety up top. The two B2B wholesale
+ * cases (GWS Connect + Mint Imports) group at the tail.
+ *
  * Every factual claim here is either observable on the live site
  * (site architecture, Next.js signals in HTML / response headers,
  * visible features like catalogs, booking flows, forms, pricing
@@ -44,6 +49,74 @@ export type CaseStudy = {
  * placeholder for Qasim to fill in with an internal metric.
  */
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: 'etobicoke-vr-arena',
+    clientName: 'Etobicoke VR Arena',
+    industry: 'Entertainment & experiences',
+    tagline:
+      'A free-roam VR arena with online booking, tiered party packages, gift cards, and Google Ads-ready landing.',
+    liveSiteUrl: 'https://www.etobicokevrarena.ca/',
+    screenshot: '/case-studies/etobicoke-vr-arena.jpg',
+    heroBlurb:
+      'Etobicoke VR Arena (Another World VR) is a free-roam virtual reality venue with three linkable arenas for up to 15 players. CS2 built a booking-first Next.js site that handles walk-in sessions, birthday parties, corporate events, gift cards, and a free-trial lead capture — all designed to convert paid-search traffic into booked time slots.',
+    challenge:
+      'A VR arena lives or dies on booked time slots. Every visitor has to understand pricing, see what the arenas look like, pick a package (walk-in, birthday, corporate), and hit "book now" in under 90 seconds — or they bounce. Generic site builders bury the booking CTA, can\'t handle tiered party packages cleanly, and don\'t load fast enough to support Google Ads without paying a Core Web Vitals penalty. The site also had to capture leads who weren\'t ready to book yet (the free 15-minute trial form) so the venue could follow up.',
+    solution:
+      'CS2 built the site on Next.js with a booking-first information architecture: clear pricing tables (off-peak vs. peak walk-in rates, birthday packages from $360 to $972, corporate packages from $375 to $1,012), an arena gallery, a 22-title game grid, a FAQ, and gift-card redemption. "Book Now" deep-links to the external booking portal at etobicoke.another-world.com, so the CS2 site focuses on conversion and hands off cleanly to the scheduling engine. A lead-capture form (name, phone, email, interest category) catches the "not ready to book yet" segment for email follow-up. The site is responsive, image-optimized via next/image, and served from nginx + CloudFront for Google Ads-grade page speed.',
+    outcome:
+      'The arena now has a conversion-tuned site that pairs cleanly with paid acquisition: fast LCP, visible pricing, obvious booking CTA, and a backup lead-capture path for browsers who aren\'t ready yet. [TODO: monthly booking volume post-launch — Qasim to supply]. [TODO: Google Ads CPA since site rebuild — Qasim to supply]. [TODO: birthday-package bookings / month — Qasim to supply].',
+    techStack: [
+      'Next.js',
+      'React',
+      'Tailwind CSS',
+      'next/image optimization',
+      'nginx + CloudFront hosting',
+      'External booking-portal integration',
+      'Lead-capture form (free-trial intake)',
+    ],
+    highlights: [
+      'Booking-first layout with clear walk-in, party, and corporate pricing tiers',
+      'Deep-link hand-off to the Another-World booking engine',
+      'Free 15-minute trial lead-capture form for not-ready-to-book visitors',
+      'Gift-card denomination redemption flow',
+      'Page-speed tuned for Google Ads (next/image, CDN, responsive)',
+    ],
+    whatThisProves:
+      'How CS2 turns a paid-traffic landing page into a booking funnel for a location-based experience business — exactly the Growth-tier SMB play.',
+  },
+  {
+    slug: 'notermed',
+    clientName: 'Notermed',
+    industry: 'Healthcare SaaS',
+    tagline:
+      'An AI medical-transcription product site with auth-gated app and marketing layers on one Next.js codebase.',
+    liveSiteUrl: 'https://www.notermed.com/',
+    screenshot: '/case-studies/notermed.jpg',
+    heroBlurb:
+      'Notermed is an AI-powered medical transcription product — "notes that write themselves" — that generates clinical notes from patient conversations. CS2 built the public marketing surface and the authenticated application shell on a single Next.js codebase, with a dynamic AuthProvider that routes visitors into either the product app or the marketing pages depending on session state.',
+    challenge:
+      'Notermed is a SaaS product, not a brochure site. The same domain has to serve two jobs: convince a doctor or clinic administrator that the product is worth a trial (marketing layer), and be the app itself once that user signs in (product layer). Most SMB site builders can\'t do either side of that well, and stitching a WordPress marketing site to a separate SPA usually means double-domains, double-branding, and double-SEO pain. Notermed needed one codebase that handled both.',
+    solution:
+      'CS2 built Notermed on Next.js with an AuthProvider that wraps the entire app, so the same URL can render the public marketing hero for anonymous visitors and the authenticated product UI for signed-in users. Assets are hosted on AWS S3 with CloudFront in front, giving the app fast cold-start loads globally. Page-level SEO metadata is set per route ("AI-powered medical transcription that automatically generates clinical notes from your patient conversations."), so Google indexes the marketing surface without exposing the gated product.',
+    outcome:
+      'Notermed has a single Next.js codebase that serves marketing traffic, handles auth, and renders the product — no Webflow-plus-SPA duct tape, no SEO split across subdomains. [TODO: trial sign-ups / month — Qasim to supply]. [TODO: marketing-to-product conversion rate — Qasim to supply]. [TODO: average time from landing to first clinical note generated — Qasim to supply].',
+    techStack: [
+      'Next.js (App Router)',
+      'React',
+      'Client-side AuthProvider',
+      'AWS S3 + CloudFront hosting',
+      'Server-rendered SEO metadata',
+    ],
+    highlights: [
+      'Single codebase for marketing site + authenticated product app',
+      'AuthProvider-wrapped routing, so the same URL behaves differently per session',
+      'SEO metadata set per route for indexable marketing pages',
+      'AWS S3 + CloudFront delivery for global low-latency loads',
+      'HIPAA-appropriate architecture posture (no third-party site builders touching PHI)',
+    ],
+    whatThisProves:
+      'How CS2 ships a real SaaS product — marketing, auth, and app on one Next.js codebase — instead of duct-taping a template site to a separate web app.',
+  },
   {
     slug: 'majestik-group',
     clientName: 'The Majestik Group',
@@ -144,74 +217,6 @@ export const caseStudies: CaseStudy[] = [
     ],
     whatThisProves:
       'How CS2 builds a wholesale-credibility site that deliberately avoids a cart — the right shape for a B2B importer, not a D2C brand.',
-  },
-  {
-    slug: 'notermed',
-    clientName: 'Notermed',
-    industry: 'Healthcare SaaS',
-    tagline:
-      'An AI medical-transcription product site with auth-gated app and marketing layers on one Next.js codebase.',
-    liveSiteUrl: 'https://www.notermed.com/',
-    screenshot: '/case-studies/notermed.jpg',
-    heroBlurb:
-      'Notermed is an AI-powered medical transcription product — "notes that write themselves" — that generates clinical notes from patient conversations. CS2 built the public marketing surface and the authenticated application shell on a single Next.js codebase, with a dynamic AuthProvider that routes visitors into either the product app or the marketing pages depending on session state.',
-    challenge:
-      'Notermed is a SaaS product, not a brochure site. The same domain has to serve two jobs: convince a doctor or clinic administrator that the product is worth a trial (marketing layer), and be the app itself once that user signs in (product layer). Most SMB site builders can\'t do either side of that well, and stitching a WordPress marketing site to a separate SPA usually means double-domains, double-branding, and double-SEO pain. Notermed needed one codebase that handled both.',
-    solution:
-      'CS2 built Notermed on Next.js with an AuthProvider that wraps the entire app, so the same URL can render the public marketing hero for anonymous visitors and the authenticated product UI for signed-in users. Assets are hosted on AWS S3 with CloudFront in front, giving the app fast cold-start loads globally. Page-level SEO metadata is set per route ("AI-powered medical transcription that automatically generates clinical notes from your patient conversations."), so Google indexes the marketing surface without exposing the gated product.',
-    outcome:
-      'Notermed has a single Next.js codebase that serves marketing traffic, handles auth, and renders the product — no Webflow-plus-SPA duct tape, no SEO split across subdomains. [TODO: trial sign-ups / month — Qasim to supply]. [TODO: marketing-to-product conversion rate — Qasim to supply]. [TODO: average time from landing to first clinical note generated — Qasim to supply].',
-    techStack: [
-      'Next.js (App Router)',
-      'React',
-      'Client-side AuthProvider',
-      'AWS S3 + CloudFront hosting',
-      'Server-rendered SEO metadata',
-    ],
-    highlights: [
-      'Single codebase for marketing site + authenticated product app',
-      'AuthProvider-wrapped routing, so the same URL behaves differently per session',
-      'SEO metadata set per route for indexable marketing pages',
-      'AWS S3 + CloudFront delivery for global low-latency loads',
-      'HIPAA-appropriate architecture posture (no third-party site builders touching PHI)',
-    ],
-    whatThisProves:
-      'How CS2 ships a real SaaS product — marketing, auth, and app on one Next.js codebase — instead of duct-taping a template site to a separate web app.',
-  },
-  {
-    slug: 'etobicoke-vr-arena',
-    clientName: 'Etobicoke VR Arena',
-    industry: 'Entertainment & experiences',
-    tagline:
-      'A free-roam VR arena with online booking, tiered party packages, gift cards, and Google Ads-ready landing.',
-    liveSiteUrl: 'https://www.etobicokevrarena.ca/',
-    screenshot: '/case-studies/etobicoke-vr-arena.jpg',
-    heroBlurb:
-      'Etobicoke VR Arena (Another World VR) is a free-roam virtual reality venue with three linkable arenas for up to 15 players. CS2 built a booking-first Next.js site that handles walk-in sessions, birthday parties, corporate events, gift cards, and a free-trial lead capture — all designed to convert paid-search traffic into booked time slots.',
-    challenge:
-      'A VR arena lives or dies on booked time slots. Every visitor has to understand pricing, see what the arenas look like, pick a package (walk-in, birthday, corporate), and hit "book now" in under 90 seconds — or they bounce. Generic site builders bury the booking CTA, can\'t handle tiered party packages cleanly, and don\'t load fast enough to support Google Ads without paying a Core Web Vitals penalty. The site also had to capture leads who weren\'t ready to book yet (the free 15-minute trial form) so the venue could follow up.',
-    solution:
-      'CS2 built the site on Next.js with a booking-first information architecture: clear pricing tables (off-peak vs. peak walk-in rates, birthday packages from $360 to $972, corporate packages from $375 to $1,012), an arena gallery, a 22-title game grid, a FAQ, and gift-card redemption. "Book Now" deep-links to the external booking portal at etobicoke.another-world.com, so the CS2 site focuses on conversion and hands off cleanly to the scheduling engine. A lead-capture form (name, phone, email, interest category) catches the "not ready to book yet" segment for email follow-up. The site is responsive, image-optimized via next/image, and served from nginx + CloudFront for Google Ads-grade page speed.',
-    outcome:
-      'The arena now has a conversion-tuned site that pairs cleanly with paid acquisition: fast LCP, visible pricing, obvious booking CTA, and a backup lead-capture path for browsers who aren\'t ready yet. [TODO: monthly booking volume post-launch — Qasim to supply]. [TODO: Google Ads CPA since site rebuild — Qasim to supply]. [TODO: birthday-package bookings / month — Qasim to supply].',
-    techStack: [
-      'Next.js',
-      'React',
-      'Tailwind CSS',
-      'next/image optimization',
-      'nginx + CloudFront hosting',
-      'External booking-portal integration',
-      'Lead-capture form (free-trial intake)',
-    ],
-    highlights: [
-      'Booking-first layout with clear walk-in, party, and corporate pricing tiers',
-      'Deep-link hand-off to the Another-World booking engine',
-      'Free 15-minute trial lead-capture form for not-ready-to-book visitors',
-      'Gift-card denomination redemption flow',
-      'Page-speed tuned for Google Ads (next/image, CDN, responsive)',
-    ],
-    whatThisProves:
-      'How CS2 turns a paid-traffic landing page into a booking funnel for a location-based experience business — exactly the Growth-tier SMB play.',
   },
 ]
 

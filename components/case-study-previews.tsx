@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight, ExternalLink, Globe, CheckCircle } from 'lucide-react'
 import { caseStudies, type CaseStudy } from '@/lib/case-studies'
 
-const FEATURED_SLUGS = ['majestik-group', 'etobicoke-vr-arena', 'notermed'] as const
+const FEATURED_SLUGS = ['etobicoke-vr-arena', 'notermed', 'majestik-group'] as const
 
 const CaseStudyPreviews = () => {
   const featured: CaseStudy[] = FEATURED_SLUGS

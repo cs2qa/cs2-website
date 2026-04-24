@@ -132,6 +132,22 @@ const TIERS = [
 
 const PORTFOLIO = [
   {
+    name: 'Etobicoke VR Arena',
+    slug: 'etobicoke-vr-arena',
+    url: 'https://www.etobicokevrarena.ca/',
+    screenshot: '/case-studies/etobicoke-vr-arena.jpg',
+    description:
+      'VR arcade — booking-first site with tiered party packages and Google Ads-ready page speed.',
+  },
+  {
+    name: 'Notermed',
+    slug: 'notermed',
+    url: 'https://www.notermed.com/',
+    screenshot: '/case-studies/notermed.jpg',
+    description:
+      'AI medical transcription SaaS — marketing site + authenticated product app on one Next.js codebase.',
+  },
+  {
     name: 'The Majestik Group',
     slug: 'majestik-group',
     url: 'https://www.themajestikgroup.com/',
@@ -154,22 +170,6 @@ const PORTFOLIO = [
     screenshot: '/case-studies/mint-imports.jpg',
     description:
       'Canadian furniture importer — wholesale credibility site with category-driven quote flow.',
-  },
-  {
-    name: 'Notermed',
-    slug: 'notermed',
-    url: 'https://www.notermed.com/',
-    screenshot: '/case-studies/notermed.jpg',
-    description:
-      'AI medical transcription SaaS — marketing site + authenticated product app on one Next.js codebase.',
-  },
-  {
-    name: 'Etobicoke VR Arena',
-    slug: 'etobicoke-vr-arena',
-    url: 'https://www.etobicokevrarena.ca/',
-    screenshot: '/case-studies/etobicoke-vr-arena.jpg',
-    description:
-      'VR arcade — booking-first site with tiered party packages and Google Ads-ready page speed.',
   },
 ]
 
