@@ -1,37 +1,42 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Facebook, Twitter, Linkedin, Github, Mail } from 'lucide-react'
+import { Linkedin, Mail } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   const footerLinks = {
-    solutions: [
-      { label: 'CS2 Health', href: '#products' },
-      { label: 'B2B Ecommerce', href: '#products' },
-      { label: 'AI Chatbots', href: '#services' },
-      { label: 'Custom Development', href: '#services' }
+    services: [
+      { label: 'Foundation — Lead Gen', href: '/services/smb-acquisition/#tier-foundation' },
+      { label: 'Growth — Bookings & Payments', href: '/services/smb-acquisition/#tier-growth' },
+      { label: 'Scale — E-Commerce', href: '/services/smb-acquisition/#tier-scale' },
+      { label: 'All services & pricing', href: '/services/smb-acquisition/' },
     ],
     company: [
-      { label: 'About Us', href: '#about' },
-      { label: 'Our Expertise', href: '#expertise' },
-      { label: 'Contact', href: '#contact' },
-      { label: 'Careers', href: '#' }
+      { label: 'About Us', href: '/about/' },
+      { label: 'Case Studies', href: '/case-studies/' },
+      { label: 'Contact', href: '/contact/' },
+      { label: 'Get a free audit', href: '/services/smb-acquisition/#audit-form' },
     ],
     resources: [
-      { label: 'Documentation', href: '#' },
-      { label: 'Case Studies', href: '#' },
-      { label: 'Blog', href: '#' },
-      { label: 'Support', href: '#' }
-    ]
+      {
+        label: 'Book a 30-min call',
+        href: 'https://calendly.com/qasim-ali-cs2technologies',
+        external: true,
+      },
+      { label: 'Case Studies', href: '/case-studies/' },
+      { label: 'Enterprise (legacy)', href: '/enterprise/services/' },
+    ],
   }
 
   const socialLinks = [
-    { icon: <Linkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
-    { icon: <Twitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
-    { icon: <Github className="w-5 h-5" />, href: '#', label: 'GitHub' },
-    { icon: <Facebook className="w-5 h-5" />, href: '#', label: 'Facebook' }
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      href: 'https://www.linkedin.com/company/cs2technologies',
+      label: 'LinkedIn',
+      external: true,
+    },
   ]
 
   return (
@@ -49,8 +54,8 @@ const Footer = () => {
               />
             </Link>
             <p className="text-gray-400 mb-4">
-              Transforming businesses with intelligent AI solutions. 
-              From telecommunications expertise to healthcare innovation.
+              Custom websites for Canadian small businesses, launched in 4 weeks.
+              Hosting, Google Ads, and CRM included. You own the code.
             </p>
             <p className="text-gray-400 text-sm mb-4">
               2424 Finch Ave W, Unit 14<br />
@@ -62,6 +67,8 @@ const Footer = () => {
                   key={index}
                   href={social.href}
                   aria-label={social.label}
+                  target={social.external ? '_blank' : undefined}
+                  rel={social.external ? 'noopener noreferrer' : undefined}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {social.icon}
@@ -71,11 +78,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4">Solutions</h3>
+            <h3 className="font-semibold text-lg mb-4">Services</h3>
             <ul className="space-y-2">
-              {footerLinks.solutions.map((link, index) => (
+              {footerLinks.services.map((link, index) => (
                 <li key={index}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-gray-400 hover:text-white transition-colors"
                   >
@@ -91,7 +98,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-gray-400 hover:text-white transition-colors"
                   >
@@ -107,12 +114,23 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.resources.map((link, index) => (
                 <li key={index}>
-                  <Link 
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -125,14 +143,11 @@ const Footer = () => {
               © {currentYear} CS2 Technologies. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="#" className="text-gray-400 hover:text-white text-sm">
-                Privacy Policy
+              <Link href="/about/" className="text-gray-400 hover:text-white text-sm">
+                About
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white text-sm">
-                Terms of Service
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white text-sm">
-                Cookie Policy
+              <Link href="/contact/" className="text-gray-400 hover:text-white text-sm">
+                Contact
               </Link>
             </div>
           </div>
@@ -144,7 +159,7 @@ const Footer = () => {
           <div className="flex items-center justify-center space-x-2">
             <Mail className="w-4 h-4" />
             <p className="text-sm">
-              Need immediate assistance? Email us at{' '}
+              Ready to talk? Email us at{' '}
               <a href="mailto:info@cs2technologies.ca" className="underline">
                 info@cs2technologies.ca
               </a>

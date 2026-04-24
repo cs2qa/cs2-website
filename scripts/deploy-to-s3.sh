@@ -1,12 +1,19 @@
 #!/bin/bash
 
 # CS2 Technologies - AWS S3 Deployment Script
-# This script builds and deploys the Next.js static site to AWS S3
+# This script builds and deploys the Next.js static site to AWS S3.
+#
+# AWS profile: defaults to "gws" (the cs2-dev-user IAM principal that owns
+# the cs2technologies-website bucket). Override by exporting AWS_PROFILE
+# before invoking, e.g.  AWS_PROFILE=somethingelse ./scripts/deploy-to-s3.sh
 
 set -e
 
+export AWS_PROFILE="${AWS_PROFILE:-gws}"
+
 echo "🚀 CS2 Technologies Website Deployment Script"
 echo "============================================"
+echo "🔑 Using AWS profile: ${AWS_PROFILE}"
 
 # Get the script directory and project root
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -30,10 +37,12 @@ if ! command -v aws &> /dev/null; then
     exit 1
 fi
 
-# Check AWS credentials
-echo "📋 Checking AWS credentials..."
+# Check AWS credentials for the selected profile
+echo "📋 Checking AWS credentials for profile '${AWS_PROFILE}'..."
 if ! aws sts get-caller-identity &> /dev/null; then
-    echo "❌ AWS credentials not configured. Please run 'aws configure' first."
+    echo "❌ AWS credentials not configured for profile '${AWS_PROFILE}'."
+    echo "   Either run 'aws configure --profile ${AWS_PROFILE}' to set it up,"
+    echo "   or pick a different profile: AWS_PROFILE=<name> ./scripts/deploy-to-s3.sh"
     exit 1
 fi
 

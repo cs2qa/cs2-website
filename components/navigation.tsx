@@ -34,10 +34,9 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/', label: 'Home' },
+    { href: '/services/smb-acquisition/', label: 'Services' },
+    { href: '/case-studies/', label: 'Case Studies' },
     { href: '/about/', label: 'About' },
-    { href: '/services/', label: 'Services' },
-    { href: '/products/', label: 'Products' },
-    { href: '/expertise/', label: 'Expertise' },
     { href: '/contact/', label: 'Contact' },
   ]
 
@@ -46,8 +45,8 @@ export default function Navigation() {
       {showBanner && (
         <div className="fixed top-0 inset-x-0 z-50">
           <div className="h-10 flex items-center justify-center px-4 bg-gradient-to-r from-primary to-blue-600 text-white text-sm">
-            <span className="mr-3">Free consultation available — limited slots this month.</span>
-            <Link href="/demo/" className="underline underline-offset-2 font-medium hover:text-white/90">Book now</Link>
+            <span className="mr-3">Free 30-minute website + Google Ads audit — limited slots this month.</span>
+            <Link href="/services/smb-acquisition/#audit-form" className="underline underline-offset-2 font-medium hover:text-white/90">Get your audit</Link>
             <button
               aria-label="Dismiss announcement"
               onClick={dismissBanner}
@@ -105,18 +104,23 @@ export default function Navigation() {
                 </Link>
               )
             })}
-            <Link href="/get-started/" className="ml-2">
-              <Button 
-                size="lg" 
+            <a
+              href="https://calendly.com/qasim-ali-cs2technologies"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2"
+            >
+              <Button
+                size="lg"
                 className="relative bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white px-6 shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border border-primary/20 overflow-hidden group"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                 <span className="relative flex items-center">
-                  Get Started
+                  Book a call
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </Button>
-            </Link>
+            </a>
           </div>
 
           <button
@@ -155,12 +159,17 @@ export default function Navigation() {
                 </Link>
               )
             })}
-            <Link href="/get-started/">
+            <a
+              href="https://calendly.com/qasim-ali-cs2technologies"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+            >
               <Button size="lg" className="w-full bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white px-8 mt-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-primary/20">
-                Get Started
+                Book a call
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       )}

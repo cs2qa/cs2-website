@@ -135,6 +135,7 @@ const PORTFOLIO = [
     name: 'The Majestik Group',
     slug: 'majestik-group',
     url: 'https://www.themajestikgroup.com/',
+    screenshot: '/case-studies/majestik-group.jpg',
     description:
       'Premium furniture retailer — catalog-driven Next.js site with quote flow and wholesale portal.',
   },
@@ -142,6 +143,7 @@ const PORTFOLIO = [
     name: 'GWS Connect',
     slug: 'gws-connect',
     url: 'https://www.gwsconnect24.com/',
+    screenshot: '/case-studies/gws-connect.jpg',
     description:
       'B2B wholesale brokerage — member-gated platform with buyer / supplier auth and deal feeds.',
   },
@@ -149,6 +151,7 @@ const PORTFOLIO = [
     name: 'Mint Imports',
     slug: 'mint-imports',
     url: 'https://www.minttimports.ca/',
+    screenshot: '/case-studies/mint-imports.jpg',
     description:
       'Canadian furniture importer — wholesale credibility site with category-driven quote flow.',
   },
@@ -156,6 +159,7 @@ const PORTFOLIO = [
     name: 'Notermed',
     slug: 'notermed',
     url: 'https://www.notermed.com/',
+    screenshot: '/case-studies/notermed.jpg',
     description:
       'AI medical transcription SaaS — marketing site + authenticated product app on one Next.js codebase.',
   },
@@ -163,6 +167,7 @@ const PORTFOLIO = [
     name: 'Etobicoke VR Arena',
     slug: 'etobicoke-vr-arena',
     url: 'https://www.etobicokevrarena.ca/',
+    screenshot: '/case-studies/etobicoke-vr-arena.jpg',
     description:
       'VR arcade — booking-first site with tiered party packages and Google Ads-ready page speed.',
   },
@@ -395,7 +400,8 @@ const SMBAcquisitionPage = () => {
             {TIERS.map((tier) => (
               <div
                 key={tier.name}
-                className={`bg-white rounded-xl p-8 shadow-xl border-2 ${
+                id={`tier-${tier.name.toLowerCase()}`}
+                className={`bg-white rounded-xl p-8 shadow-xl border-2 scroll-mt-28 ${
                   tier.highlight
                     ? 'border-primary shadow-2xl scale-100 md:scale-105 relative'
                     : 'border-gray-400/60'
@@ -501,9 +507,14 @@ const SMBAcquisitionPage = () => {
                   className="block"
                   aria-label={`Read ${site.name} case study`}
                 >
-                  <div className="aspect-video bg-gradient-to-br from-gray-100 via-gray-50 to-primary/5 flex items-center justify-center relative">
-                    <Globe className="w-16 h-16 text-gray-300 group-hover:text-primary/70 transition-colors" />
-                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-mono text-gray-600">
+                  <div className="aspect-video overflow-hidden bg-gray-100 relative">
+                    <img
+                      src={site.screenshot}
+                      alt={`${site.name} live site homepage`}
+                      className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-mono text-gray-700">
                       {new URL(site.url).hostname.replace('www.', '')}
                     </div>
                   </div>

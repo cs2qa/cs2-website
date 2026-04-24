@@ -11,7 +11,6 @@ import {
   MapPin,
   Send,
   Clock,
-  Globe,
   MessageSquare,
   CheckCircle,
   Calendar,
@@ -20,7 +19,9 @@ import {
   Building2,
   Tag,
   FileText,
-  Loader2
+  Loader2,
+  ArrowRight,
+  ExternalLink
 } from 'lucide-react'
 
 const Contact = () => {
@@ -35,6 +36,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [consent, setConsent] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -46,11 +48,17 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+    setErrorMessage(null)
+
     try {
-      // Get API URL from environment or use placeholder
-      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'YOUR_API_GATEWAY_URL_HERE'
-      
+      const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL
+
+      if (!apiUrl) {
+        throw new Error(
+          "The contact form isn't configured yet. Please email info@cs2technologies.ca or call 905-749-5338 and we'll get right back to you."
+        )
+      }
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -58,17 +66,18 @@ const Contact = () => {
         },
         body: JSON.stringify(formData)
       })
-      
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        throw new Error(
+          `We couldn't send your message (status ${response.status}). Please try again in a moment, or email info@cs2technologies.ca.`
+        )
       }
-      
-      const result = await response.json()
-      console.log('Form submitted successfully:', result)
-      
+
+      await response.json()
+
       setIsSubmitting(false)
       setSubmitted(true)
-      
+
       // Reset form after 5 seconds
       setTimeout(() => {
         setSubmitted(false)
@@ -82,16 +91,26 @@ const Contact = () => {
         })
         setConsent(false)
       }, 5000)
-      
+
     } catch (error) {
-      console.error('Error submitting form:', error)
       setIsSubmitting(false)
-      // You could add error state handling here
-      alert('Failed to send message. Please try again or contact us directly.')
+      const message =
+        error instanceof Error
+          ? error.message
+          : "We couldn't send your message. Please try again or email info@cs2technologies.ca."
+      setErrorMessage(message)
     }
   }
 
-  const contactInfo = [
+  type ContactInfoItem = {
+    icon: React.ReactNode
+    title: string
+    content: string
+    link?: string
+    external?: boolean
+  }
+
+  const contactInfo: ContactInfoItem[] = [
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
@@ -107,20 +126,14 @@ const Contact = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Toronto Office",
-      content: "2424 Finch Ave W, Unit 14, Toronto ON M9M 2E2, Canada",
-      link: "#"
+      content: "2424 Finch Ave W, Unit 14, Toronto ON M9M 2E2, Canada"
     },
     {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Milton Office",
-      content: "752 Apple Terrace, L9E 2C3 Milton, Ontario, Canada",
-      link: "#"
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: "Websites",
-      content: "www.cs2technologies.ca | www.cs2technologies.com",
-      link: "https://www.cs2technologies.com"
+      icon: <Calendar className="w-6 h-6" />,
+      title: "Book a 30-min call",
+      content: "Grab a time on Qasim's calendar directly.",
+      link: "https://calendly.com/qasim-ali-cs2technologies",
+      external: true
     }
   ]
 
@@ -143,11 +156,11 @@ const Contact = () => {
             Get in Touch
           </div>
           <h2 className="text-display-sm font-display text-gray-900 mb-6">
-            Let&apos;s Transform Your Business
+            Let&apos;s talk about your website
           </h2>
           <p className="text-body-lg text-gray-600 max-w-3xl mx-auto font-body">
-            Ready to leverage AI for your organization? Contact us to discuss how our 
-            solutions can drive innovation and efficiency in your operations.
+            Send us a note, email directly, or grab a time on Qasim&apos;s
+            calendar. We reply within one business day.
           </p>
         </motion.div>
 
@@ -256,11 +269,11 @@ const Contact = () => {
                           className="w-full appearance-none rounded-xl border-2 border-gray-200 bg-white/90 px-4 py-3 pl-11 text-gray-900 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none"
                         >
                           <option value="">Select a subject</option>
-                          <option value="cs2-health">CS2 Health Demo</option>
-                          <option value="b2b-ecommerce">B2B Ecommerce Solution</option>
-                          <option value="ai-consulting">AI Consulting</option>
-                          <option value="custom-development">Custom Development</option>
-                          <option value="partnership">Partnership Opportunity</option>
+                          <option value="free-audit">Free website &amp; Google Ads audit</option>
+                          <option value="foundation">Foundation — lead generation site</option>
+                          <option value="growth">Growth — bookings &amp; payments site</option>
+                          <option value="scale">Scale — full e-commerce</option>
+                          <option value="existing-client">I&apos;m an existing client</option>
                           <option value="other">Other</option>
                         </select>
                       </div>
@@ -277,7 +290,7 @@ const Contact = () => {
                           required
                           rows={7}
                           placeholder="Tell us a bit about your goals..."
-                          className="w-full min-h-[220px] rounded-xl border-2 border-red-500 bg-white/90 px-4 py-3 pl-11 text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:border-red-500 focus:border-red-500 focus:ring-4 focus:ring-red-100 focus:outline-none resize-y"
+                          className="w-full min-h-[220px] rounded-xl border-2 border-gray-200 bg-white/90 px-4 py-3 pl-11 text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none resize-y"
                         />
                       </div>
                     </div>
@@ -293,10 +306,21 @@ const Contact = () => {
                         className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                       />
                       <label htmlFor="consent" className="text-sm text-gray-600">
-                        I agree to be contacted about my inquiry and understand the data will be handled per the
-                        <Link href="/privacy" className="text-primary hover:text-primary/80 underline ml-1">Privacy Policy</Link>.
+                        I agree to be contacted about my inquiry. We&apos;ll only
+                        use the information you provide to respond to this
+                        message.
                       </label>
                     </div>
+
+                    {errorMessage && (
+                      <div
+                        role="alert"
+                        aria-live="polite"
+                        className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+                      >
+                        {errorMessage}
+                      </div>
+                    )}
 
                     <Button
                       type="submit"
@@ -336,30 +360,57 @@ const Contact = () => {
                 <h3 className="text-heading-lg font-display text-gray-900">Get in Touch</h3>
               </div>
               <p className="text-body-md text-gray-600 font-body">
-                Our team is ready to help you harness the power of AI for your business. 
-                Whether you&apos;re looking for a demo, have questions about our solutions, 
-                or want to explore partnership opportunities, we&apos;re here to help.
+                Whether you want a free audit, a detailed quote, or just want
+                to talk through whether we&apos;re the right fit — we&apos;re
+                happy to help. Every SMB engagement is run directly by Qasim.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {contactInfo.map((item, index) => (
-                <motion.a
-                  key={index}
-                  href={item.link}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-start p-5 bg-gradient-to-br from-white to-gray-50/50 rounded-xl hover:from-primary/5 hover:to-primary/10 transition-all duration-300 shadow-md hover:shadow-lg"
-                >
-                  <div className="p-2 bg-primary/10 rounded-lg text-primary mr-4 flex-shrink-0">{item.icon}</div>
-                  <div>
-                    <h4 className="font-display font-semibold text-gray-900">{item.title}</h4>
-                    <p className="text-body-sm text-gray-600 font-body">{item.content}</p>
-                  </div>
-                </motion.a>
-              ))}
+              {contactInfo.map((item, index) => {
+                const cardClass =
+                  'flex items-start p-5 bg-gradient-to-br from-white to-gray-50/50 rounded-xl hover:from-primary/5 hover:to-primary/10 transition-all duration-300 shadow-md hover:shadow-lg'
+                const body = (
+                  <>
+                    <div className="p-2 bg-primary/10 rounded-lg text-primary mr-4 flex-shrink-0">{item.icon}</div>
+                    <div>
+                      <h4 className="font-display font-semibold text-gray-900">{item.title}</h4>
+                      <p className="text-body-sm text-gray-600 font-body">{item.content}</p>
+                    </div>
+                  </>
+                )
+
+                if (!item.link) {
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className={cardClass}
+                    >
+                      {body}
+                    </motion.div>
+                  )
+                }
+
+                return (
+                  <motion.a
+                    key={index}
+                    href={item.link}
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noopener noreferrer' : undefined}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className={cardClass}
+                  >
+                    {body}
+                  </motion.a>
+                )
+              })}
             </div>
 
             <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 bg-gradient-to-br from-white to-gray-50/30">
@@ -394,19 +445,32 @@ const Contact = () => {
                   <div className="p-2 bg-white/20 rounded-lg mr-3">
                     <CheckCircle className="w-6 h-6 text-white" />
                   </div>
-                  <h4 className="font-display font-bold text-xl">Ready to Get Started?</h4>
+                  <h4 className="font-display font-bold text-xl">Ready to get started?</h4>
                 </div>
                 <p className="mb-6 text-white/90 font-body">
-                  Schedule a personalized demo to see how CS2 Technologies can transform 
-                  your business with AI.
+                  Skip the form. Get a free 30-minute audit of your website
+                  and Google Ads, or grab a time on Qasim&apos;s calendar.
                 </p>
-                <Button disabled className="bg-white/50 text-gray-500 cursor-not-allowed shadow-lg px-6 py-3">
-                  <Calendar className="mr-2 w-5 h-5" />
-                  Book a Demo (Coming Soon)
-                </Button>
-                <p className="mt-3 text-sm text-white/80 font-body">
-                  Please email or call us to schedule a demo
-                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link href="/services/smb-acquisition/#audit-form" className="inline-block">
+                    <Button className="bg-white text-primary hover:bg-gray-100 shadow-lg px-6 py-3">
+                      Get a free audit
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </Link>
+                  <a
+                    href="https://calendly.com/qasim-ali-cs2technologies"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block"
+                  >
+                    <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary px-6 py-3">
+                      <Calendar className="mr-2 w-5 h-5" />
+                      Book a 30-min call
+                      <ExternalLink className="ml-2 w-4 h-4" />
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>

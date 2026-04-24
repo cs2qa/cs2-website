@@ -1,12 +1,18 @@
 #!/bin/bash
 
 # CS2 Technologies - CloudFront Setup Script
-# This script creates and configures a CloudFront distribution
+# This script creates and configures a CloudFront distribution.
+#
+# AWS profile: defaults to "gws" (cs2-dev-user). Override by exporting
+# AWS_PROFILE before invoking.
 
 set -e
 
+export AWS_PROFILE="${AWS_PROFILE:-gws}"
+
 echo "☁️  CS2 Technologies CloudFront Setup Script"
 echo "==========================================="
+echo "🔑 Using AWS profile: ${AWS_PROFILE}"
 
 # Get the script directory and project root
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

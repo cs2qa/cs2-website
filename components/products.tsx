@@ -94,7 +94,7 @@ const Products = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/demo/">
+                  <Link href="/enterprise/demo/">
                     <Button size="lg" className="bg-red-500 hover:bg-red-600 text-white">
                       Schedule CS2 Health Demo
                       <Heart className="ml-2 w-5 h-5" />
@@ -210,7 +210,7 @@ const Products = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/demo/">
+                  <Link href="/enterprise/demo/">
                     <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white">
                       Schedule Commerce Demo
                       <ShoppingCart className="ml-2 w-5 h-5" />
@@ -261,7 +261,7 @@ const Products = () => {
                 </div>
               </div>
               
-              <Link href="/demo/" className="block">
+              <Link href="/enterprise/demo/" className="block">
                 <Button className="w-full bg-red-500 hover:bg-red-600 text-white">
                   Get Started with CS2 Health
                 </Button>
@@ -294,7 +294,7 @@ const Products = () => {
                 </div>
               </div>
               
-              <Link href="/demo/" className="block">
+              <Link href="/enterprise/demo/" className="block">
                 <Button className="w-full bg-green-500 hover:bg-green-600 text-white">
                   Get Started with B2B Commerce
                 </Button>
@@ -314,7 +314,7 @@ const Products = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/demo/">
+            <Link href="/enterprise/demo/">
               <Button size="lg" className="bg-white text-primary hover:bg-gray-100 shadow-lg">
                 Schedule a Demo
                 <ArrowRight className="ml-2 w-5 h-5" />

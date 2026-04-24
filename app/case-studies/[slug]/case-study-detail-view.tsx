@@ -90,26 +90,27 @@ const CaseStudyDetailView: React.FC<Props> = ({ study }) => {
             </Link>
           </div>
 
-          {/* Visual placeholder */}
-          <motion.div
+          <motion.a
+            href={study.liveSiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="relative mt-12 aspect-[16/8] bg-gradient-to-br from-gray-100 via-gray-50 to-primary/5 rounded-2xl shadow-xl border-2 border-gray-400/60 overflow-hidden"
+            className="group relative mt-12 aspect-[16/8] rounded-2xl shadow-xl border-2 border-gray-400/60 overflow-hidden block bg-gray-100"
+            aria-label={`Visit ${study.clientName} live site (opens in new tab)`}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,41,0,0.12),transparent_55%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(130deg,transparent_0%,transparent_55%,rgba(255,41,0,0.08)_100%)]" />
-            <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-              <Globe className="w-16 h-16 text-gray-300 mb-4" />
-              <h2 className="text-heading-md font-display text-gray-900 mb-1">
-                {study.clientName}
-              </h2>
-              <p className="text-body-sm text-gray-500 font-mono">
-                {hostname}
-              </p>
+            <img
+              src={study.screenshot}
+              alt={`${study.clientName} live site homepage`}
+              className="w-full h-full object-cover object-top group-hover:scale-[1.01] transition-transform duration-500"
+            />
+            <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-lg bg-black/70 text-white text-xs font-mono backdrop-blur-sm flex items-center gap-1.5">
+              {hostname}
+              <ExternalLink className="w-3 h-3" />
             </div>
-          </motion.div>
+          </motion.a>
         </div>
       </section>
 

@@ -9,6 +9,11 @@ export type CaseStudy = {
   tagline: string
   /** Live site URL (external, opens in a new tab). */
   liveSiteUrl: string
+  /**
+   * Screenshot of the live site, captured at 1440x900 viewport.
+   * Path is relative to /public, so render as `src={screenshot}`.
+   */
+  screenshot: string
   /** 2–3 sentence lede rendered at the top of the detail page. */
   heroBlurb: string
   /** Paragraph describing what the client needed. */
@@ -46,6 +51,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       'A premium furniture retailer with a catalog-driven site, custom-order flow, and a wholesale portal.',
     liveSiteUrl: 'https://www.themajestikgroup.com/',
+    screenshot: '/case-studies/majestik-group.jpg',
     heroBlurb:
       'The Majestik Group is a premium furniture retailer in Mississauga, Ontario, specializing in sofas, sectionals, sofa beds, and bedroom furniture. CS2 built a Next.js-powered catalog site with custom-order inquiry flows, a wholesale login portal, and a showroom-forward brand experience — no template, no platform tax.',
     challenge:
@@ -79,6 +85,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       'A member-gated wholesale brokerage with buyer / supplier portals, deal listings, and escrow-style transaction flow.',
     liveSiteUrl: 'https://www.gwsconnect24.com/',
+    screenshot: '/case-studies/gws-connect.jpg',
     heroBlurb:
       'GWS Connect is a wholesale brokerage connecting retailers, marketplace sellers, and manufacturers with verified suppliers of closeout and overstock inventory. CS2 built the public-facing site and the membership application layer — buyer and supplier authentication, deal feeds, demo-booking flows, and content structure that supports a managed-transaction business model.',
     challenge:
@@ -112,6 +119,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       'A Canadian furniture importer with a product-category site, quote flow, and retailer-facing content.',
     liveSiteUrl: 'https://www.minttimports.ca/',
+    screenshot: '/case-studies/mint-imports.jpg',
     heroBlurb:
       'Mint Imports is a wholesale furniture importer serving Canadian retailers, sourcing sofas, sofa beds, chairs, and beds from China, Turkey, and Vietnam. CS2 built a clean, category-driven Next.js site that positions Mint as a reliable wholesale partner and captures retailer inquiries without forcing the business into a generic e-commerce template.',
     challenge:
@@ -144,6 +152,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       'An AI medical-transcription product site with auth-gated app and marketing layers on one Next.js codebase.',
     liveSiteUrl: 'https://www.notermed.com/',
+    screenshot: '/case-studies/notermed.jpg',
     heroBlurb:
       'Notermed is an AI-powered medical transcription product — "notes that write themselves" — that generates clinical notes from patient conversations. CS2 built the public marketing surface and the authenticated application shell on a single Next.js codebase, with a dynamic AuthProvider that routes visitors into either the product app or the marketing pages depending on session state.',
     challenge:
@@ -176,6 +185,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       'A free-roam VR arena with online booking, tiered party packages, gift cards, and Google Ads-ready landing.',
     liveSiteUrl: 'https://www.etobicokevrarena.ca/',
+    screenshot: '/case-studies/etobicoke-vr-arena.jpg',
     heroBlurb:
       'Etobicoke VR Arena (Another World VR) is a free-roam virtual reality venue with three linkable arenas for up to 15 players. CS2 built a booking-first Next.js site that handles walk-in sessions, birthday parties, corporate events, gift cards, and a free-trial lead capture — all designed to convert paid-search traffic into booked time slots.',
     challenge:

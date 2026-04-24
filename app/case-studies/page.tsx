@@ -68,18 +68,15 @@ const CaseStudiesIndexPage = () => {
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   className="group bg-white rounded-2xl shadow-xl border-2 border-gray-400/60 overflow-hidden hover:border-primary/60 transition-colors flex flex-col"
                 >
-                  {/* Visual placeholder (we don't have screenshots) */}
-                  <div className="relative aspect-[16/9] bg-gradient-to-br from-gray-100 via-gray-50 to-primary/5 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,41,0,0.08),transparent_55%)]" />
-                    <div className="absolute inset-0 bg-[linear-gradient(130deg,transparent_0%,transparent_60%,rgba(255,41,0,0.06)_100%)]" />
-                    <div className="relative z-10 flex flex-col items-center text-center px-6">
-                      <Globe className="w-12 h-12 text-gray-300 mb-3 group-hover:text-primary/60 transition-colors" />
-                      <h3 className="text-heading-md font-display text-gray-900">
-                        {study.clientName}
-                      </h3>
-                      <p className="mt-1 text-body-sm text-gray-500 font-mono">
-                        {hostname}
-                      </p>
+                  <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
+                    <img
+                      src={study.screenshot}
+                      alt={`${study.clientName} live site homepage`}
+                      className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute bottom-2 right-2 px-2 py-1 rounded bg-black/70 text-white text-xs font-mono backdrop-blur-sm">
+                      {hostname}
                     </div>
                   </div>
 

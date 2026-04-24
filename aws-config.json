@@ -1,6 +1,6 @@
 {
   "s3": {
-    "bucketName": "cs2technologies-website",
+    "bucketName": "cs2technologies-website-production",
     "region": "us-east-1"
   },
   "cloudfront": {

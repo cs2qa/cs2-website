@@ -271,7 +271,7 @@ const Expertise = () => {
                   Start Your Project
                 </Button>
               </Link>
-              <Link href="/demo/">
+              <Link href="/enterprise/demo/">
                 <Button 
                   variant="outline" 
                   className="border-white text-white hover:bg-white hover:text-primary px-6 py-3"

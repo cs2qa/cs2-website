@@ -30,24 +30,27 @@ const LocationsSection = () => {
   const contactMethods = [
     {
       icon: <Phone className="w-6 h-6" />,
-      title: "Phone Support",
-      description: "Speak directly with our technical experts",
-      action: "Call Now",
-      link: "tel:+19057495338"
+      title: "Call Qasim",
+      description: "Direct line to your project lead.",
+      action: "Call now",
+      link: "tel:+19057495338",
+      external: false,
     },
     {
       icon: <Mail className="w-6 h-6" />,
-      title: "Email Support",
-      description: "Get detailed responses within 24 hours",
-      action: "Send Email",
-      link: "mailto:info@cs2technologies.ca"
+      title: "Email us",
+      description: "Replies within one business day.",
+      action: "Send email",
+      link: "mailto:info@cs2technologies.ca",
+      external: false,
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: "Schedule Consultation",
-      description: "Book a free consultation with our team",
-      action: "Book Now",
-      link: "/demo"
+      title: "Book a 30-min call",
+      description: "Grab a time directly on Qasim's calendar.",
+      action: "Book now",
+      link: "https://calendly.com/qasim-ali-cs2technologies",
+      external: true,
     }
   ]
 
@@ -148,9 +151,9 @@ const LocationsSection = () => {
                   </div>
 
                   <div className="pt-4">
-                    <Link href="/demo">
+                    <Link href="/services/smb-acquisition/#audit-form">
                       <Button className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto">
-                        Schedule a Consultation
+                        Get a free audit
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
                     </Link>
@@ -196,12 +199,21 @@ const LocationsSection = () => {
                   {method.description}
                 </p>
                 
-                <Link href={method.link}>
-                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                    {method.action}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
+                {method.external ? (
+                  <a href={method.link} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                      {method.action}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </a>
+                ) : (
+                  <Link href={method.link}>
+                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                      {method.action}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>
