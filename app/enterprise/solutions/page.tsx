@@ -401,13 +401,13 @@ export default function Solutions() {
                     </div>
 
                     <div className="flex gap-3">
-                      <Link href="/get-started/" className="flex-1">
+                      <Link href="/enterprise/get-started/" className="flex-1">
                         <Button className="w-full bg-primary hover:bg-primary/90">
                           Get Started
                           <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
                       </Link>
-                      <Link href="/demo/">
+                      <Link href="/enterprise/demo/">
                         <Button variant="outline" className="border-primary text-primary hover:bg-primary/10">
                           Demo
                         </Button>
@@ -435,13 +435,13 @@ export default function Solutions() {
               Get a free consultation and personalized recommendations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/demo/">
+              <Link href="/enterprise/demo/">
                 <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
                   Schedule Free Consultation
                   <Users className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link href="/get-started/">
+              <Link href="/enterprise/get-started/">
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                   Start Assessment
                   <ArrowRight className="ml-2 w-5 h-5" />

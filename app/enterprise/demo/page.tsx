@@ -7,11 +7,11 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
-  ArrowRight, 
-  CheckCircle, 
-  Heart, 
-  ShoppingCart, 
+import {
+  ArrowRight,
+  CheckCircle,
+  Heart,
+  ShoppingCart,
   MessageSquare,
   Brain,
   Users,
@@ -23,14 +23,22 @@ import {
   Award,
   Zap,
   Shield,
-  PlayCircle
+  PlayCircle,
+  AlertCircle
 } from 'lucide-react'
+
+type SubmitStatus =
+  | { kind: 'idle' }
+  | { kind: 'submitting' }
+  | { kind: 'success' }
+  | { kind: 'error'; message: string }
 
 export default function ScheduleDemo() {
   const [selectedDemo, setSelectedDemo] = useState('')
   const [selectedTime, setSelectedTime] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<SubmitStatus>({ kind: 'idle' })
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -112,14 +120,15 @@ export default function ScheduleDemo() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+    setStatus({ kind: 'submitting' })
+
     try {
       const demoType = demoTypes.find(demo => demo.id === selectedDemo)
       const timeSlot = timeSlots.find(slot => slot.id === selectedTime)
-      
+
       // Get API URL from environment or use placeholder
       const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'YOUR_API_GATEWAY_URL_HERE'
-      
+
       const emailData = {
         name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
@@ -141,7 +150,7 @@ Demo Features Requested:
 ${demoType?.features.map(feature => `• ${feature}`).join('\n')}
         `
       }
-      
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -149,19 +158,21 @@ ${demoType?.features.map(feature => `• ${feature}`).join('\n')}
         },
         body: JSON.stringify(emailData)
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
-      const result = await response.json()
-      console.log('Demo request submitted successfully:', result)
-      
+
+      setStatus({ kind: 'success' })
       setFormSubmitted(true)
-      
+
     } catch (error) {
       console.error('Error submitting demo request:', error)
-      alert('Failed to submit demo request. Please try again or contact us directly.')
+      const message =
+        error instanceof Error && error.message
+          ? `We couldn't schedule your demo: ${error.message}. Please try again or email info@cs2technologies.ca.`
+          : "We couldn't schedule your demo. Please try again or email info@cs2technologies.ca."
+      setStatus({ kind: 'error', message })
     } finally {
       setIsSubmitting(false)
     }
@@ -227,13 +238,13 @@ ${demoType?.features.map(feature => `• ${feature}`).join('\n')}
               </Card>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/get-started/">
+                <Link href="/enterprise/get-started/">
                   <Button size="lg" className="bg-primary hover:bg-primary/90">
                     Start Your Journey
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Link href="/solutions/">
+                <Link href="/enterprise/solutions/">
                   <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
                     Explore Solutions
                   </Button>
@@ -338,6 +349,23 @@ ${demoType?.features.map(feature => `• ${feature}`).join('\n')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
+                  {status.kind === 'error' && (
+                    <div
+                      role="alert"
+                      aria-live="assertive"
+                      className="mb-6 flex items-start gap-3 rounded-xl border-2 border-red-500 bg-red-50 p-4"
+                    >
+                      <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-red-900">
+                          We couldn&apos;t schedule your demo.
+                        </p>
+                        <p className="text-sm text-red-800 mt-1">
+                          {status.message}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Demo Type Selection */}
                     <div>

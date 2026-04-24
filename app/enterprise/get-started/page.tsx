@@ -7,24 +7,32 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
-  ArrowRight, 
-  CheckCircle, 
-  Heart, 
-  ShoppingCart, 
+import {
+  ArrowRight,
+  CheckCircle,
+  Heart,
+  ShoppingCart,
   MessageSquare,
   Brain,
   Users,
   Building,
   ArrowLeft,
   Clock,
-  Star
+  Star,
+  AlertCircle
 } from 'lucide-react'
+
+type SubmitStatus =
+  | { kind: 'idle' }
+  | { kind: 'submitting' }
+  | { kind: 'success' }
+  | { kind: 'error'; message: string }
 
 export default function GetStarted() {
   const [selectedSolution, setSelectedSolution] = useState<string | null>(null)
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<SubmitStatus>({ kind: 'idle' })
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -101,13 +109,14 @@ export default function GetStarted() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+    setStatus({ kind: 'submitting' })
+
     try {
       const selectedSol = solutions.find(s => s.id === selectedSolution)
-      
+
       // Get API URL from environment or use placeholder
       const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'YOUR_API_GATEWAY_URL_HERE'
-      
+
       const emailData = {
         name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
@@ -135,7 +144,7 @@ Implementation Timeline: ${selectedSol?.timeline}
 Best For: ${selectedSol?.bestFor}
         `
       }
-      
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -143,19 +152,21 @@ Best For: ${selectedSol?.bestFor}
         },
         body: JSON.stringify(emailData)
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
-      const result = await response.json()
-      console.log('Quote request submitted successfully:', result)
-      
+
+      setStatus({ kind: 'success' })
       setCurrentStep(3)
-      
+
     } catch (error) {
       console.error('Error submitting quote request:', error)
-      alert('Failed to submit quote request. Please try again or contact us directly.')
+      const message =
+        error instanceof Error && error.message
+          ? `We couldn't submit your quote request: ${error.message}. Please try again or email info@cs2technologies.ca.`
+          : "We couldn't submit your quote request. Please try again or email info@cs2technologies.ca."
+      setStatus({ kind: 'error', message })
     } finally {
       setIsSubmitting(false)
     }
@@ -302,6 +313,23 @@ Best For: ${selectedSol?.bestFor}
 
                 <Card>
                   <CardContent className="p-8">
+                    {status.kind === 'error' && (
+                      <div
+                        role="alert"
+                        aria-live="assertive"
+                        className="mb-6 flex items-start gap-3 rounded-xl border-2 border-red-500 bg-red-50 p-4"
+                      >
+                        <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold text-red-900">
+                            We couldn&apos;t submit your quote request.
+                          </p>
+                          <p className="text-sm text-red-800 mt-1">
+                            {status.message}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                     <form onSubmit={handleFormSubmit} className="space-y-6">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
@@ -491,13 +519,13 @@ Best For: ${selectedSol?.bestFor}
                 </Card>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/demo/">
+                  <Link href="/enterprise/demo/">
                     <Button size="lg" className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 hover:from-primary/90 hover:via-primary hover:to-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
                       Schedule Demo Now
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
-                  <Link href="/solutions/">
+                  <Link href="/enterprise/solutions/">
                     <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 shadow-md hover:shadow-lg transition-all duration-300">
                       Explore More Solutions
                     </Button>
